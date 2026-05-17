@@ -3,672 +3,862 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ripasso Verifica — Informazione & Reti</title>
+<title>Riassunto Esame – Campo Magnetico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500&display=swap');
-
   :root {
-    --bg: #0e0f14;
-    --surface: #16181f;
-    --card: #1c1f2a;
-    --border: #2a2d3a;
-    --accent: #6c8fff;
-    --accent2: #ff6b8a;
-    --accent3: #50e3a4;
-    --accent4: #ffc53d;
-    --text: #e8eaf0;
-    --muted: #7a7f99;
-    --code-bg: #111318;
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2333;
+    --accent: #e8a020;
+    --accent2: #3fb950;
+    --accent3: #58a6ff;
+    --accent4: #f78166;
+    --accent5: #bc8cff;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --border: #30363d;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
     line-height: 1.7;
   }
 
-  header {
-    padding: 3rem 2rem 2rem;
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #1a0a2e 50%, #0d1117 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 60px 40px 50px;
     text-align: center;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, #0a0c14 0%, var(--bg) 100%);
     position: relative;
     overflow: hidden;
   }
-  header::before {
+  .hero::before {
     content: '';
     position: absolute;
-    top: -60px; left: 50%; transform: translateX(-50%);
-    width: 500px; height: 200px;
-    background: radial-gradient(ellipse, rgba(108,143,255,0.15) 0%, transparent 70%);
-    pointer-events: none;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(232,160,32,0.12) 0%, transparent 70%);
   }
-  header .label {
+  .hero-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: var(--accent);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 16px;
   }
-  header h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    line-height: 1.1;
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900;
     color: #fff;
+    line-height: 1.1;
+    margin-bottom: 12px;
   }
-  header h1 span { color: var(--accent); }
-  header p {
-    margin-top: 0.75rem;
-    color: var(--muted);
-    font-size: 13px;
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    color: var(--text2);
+    font-size: 1rem;
+    letter-spacing: 1px;
   }
-
-  nav {
+  .badge-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 1.2rem 2rem;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
     justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
   }
-  nav a {
+  .badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 4px 10px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    transition: all .15s;
-    cursor: pointer;
+    letter-spacing: 1px;
   }
-  nav a:hover { color: var(--accent); border-color: var(--accent); }
+  .badge-ohm  { background: rgba(63,185,80,0.15); color: var(--accent2); border: 1px solid rgba(63,185,80,0.3); }
+  .badge-mag  { background: rgba(88,166,255,0.15); color: var(--accent3); border: 1px solid rgba(88,166,255,0.3); }
+  .badge-mat  { background: rgba(188,140,255,0.15); color: var(--accent5); border: 1px solid rgba(188,140,255,0.3); }
+  .badge-forz { background: rgba(247,129,102,0.15); color: var(--accent4); border: 1px solid rgba(247,129,102,0.3); }
 
-  main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  .chapter {
-    margin-bottom: 3rem;
-    animation: fadeUp .4s ease both;
-  }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-
-  .chapter-header {
+  /* SECTION HEADERS */
+  .unit-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 20px;
+    margin: 56px 0 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
   }
-  .chapter-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    background: rgba(108,143,255,.1);
-    border: 1px solid rgba(108,143,255,.3);
-    border-radius: 4px;
-    padding: 3px 8px;
-    white-space: nowrap;
+  .unit-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    min-width: 60px;
+    text-align: center;
   }
-  .chapter-title {
-    font-family: 'Syne', sans-serif;
+  .unit-num.ohm  { color: var(--accent2); }
+  .unit-num.mag  { color: var(--accent3); }
+  .unit-num.calc { color: var(--accent); }
+  .unit-num.mat  { color: var(--accent5); }
+  .unit-num.forz { color: var(--accent4); }
+  .unit-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
     font-weight: 700;
-    font-size: 1.3rem;
-    color: #fff;
+    color: var(--text);
   }
-  .chapter-line {
-    flex: 1; height: 1px; background: var(--border);
-  }
+  .unit-title p { font-size: 0.85rem; color: var(--text2); margin-top: 2px; }
+
+  /* CARDS */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  @media(max-width:700px){ .grid2,.grid3{ grid-template-columns:1fr; } }
 
   .card {
-    background: var(--card);
+    background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1rem;
-    position: relative;
+    border-radius: 12px;
+    padding: 22px 22px 18px;
   }
-  .card-title {
-    font-family: 'Syne', sans-serif;
+  .card.highlight-green  { border-color: rgba(63,185,80,0.4);  background: rgba(63,185,80,0.05); }
+  .card.highlight-blue   { border-color: rgba(88,166,255,0.4); background: rgba(88,166,255,0.05); }
+  .card.highlight-orange { border-color: rgba(232,160,32,0.4); background: rgba(232,160,32,0.05); }
+  .card.highlight-purple { border-color: rgba(188,140,255,0.4);background: rgba(188,140,255,0.05);}
+  .card.highlight-red    { border-color: rgba(247,129,102,0.4);background: rgba(247,129,102,0.05);}
+  .card h3 {
+    font-family: 'Source Sans 3', sans-serif;
     font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .card-title .dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-  .card p, .card li { color: #bcc0d4; font-size: 14px; }
-  .card ul { padding-left: 1.2rem; }
-  .card li { margin-bottom: 0.2rem; }
-
-  .accent-green .dot { background: var(--accent3); }
-  .accent-pink .dot { background: var(--accent2); }
-  .accent-yellow .dot { background: var(--accent4); }
-
-  .formula {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    padding: 0.8rem 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    color: var(--accent3);
-    margin: 0.6rem 0;
-    overflow-x: auto;
-  }
-
-  .example-box {
-    background: rgba(80,227,164,.05);
-    border: 1px solid rgba(80,227,164,.2);
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    margin: 0.6rem 0;
-  }
-  .example-box .ex-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 0.8rem;
     letter-spacing: 2px;
-    color: var(--accent3);
     text-transform: uppercase;
-    margin-bottom: 0.4rem;
+    margin-bottom: 14px;
   }
-  .example-box p { font-size: 13px; color: #b0d4c0; }
-  .example-box .result {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--accent3);
-    margin-top: 0.3rem;
-  }
+  .card h3.green  { color: var(--accent2); }
+  .card h3.blue   { color: var(--accent3); }
+  .card h3.orange { color: var(--accent); }
+  .card h3.purple { color: var(--accent5); }
+  .card h3.red    { color: var(--accent4); }
 
-  .warning-box {
-    background: rgba(255,107,138,.05);
-    border: 1px solid rgba(255,107,138,.2);
+  /* FORMULA BOX */
+  .formula-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 0.8rem 1rem;
-    margin: 0.6rem 0;
-    font-size: 13px;
-    color: #d4a0aa;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
   }
-  .warning-box strong { color: var(--accent2); }
+  .formula-big {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+  }
+  .formula-label {
+    font-size: 0.72rem;
+    color: var(--text2);
+    margin-top: 6px;
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.5px;
+  }
 
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+  /* KEY ALERT */
+  .key-alert {
+    border-left: 3px solid var(--accent);
+    background: rgba(232,160,32,0.06);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .key-alert strong { color: var(--accent); }
 
-  table {
+  .key-alert.green { border-color: var(--accent2); background: rgba(63,185,80,0.06); }
+  .key-alert.green strong { color: var(--accent2); }
+  .key-alert.blue { border-color: var(--accent3); background: rgba(88,166,255,0.06); }
+  .key-alert.blue strong { color: var(--accent3); }
+  .key-alert.purple { border-color: var(--accent5); background: rgba(188,140,255,0.06); }
+  .key-alert.purple strong { color: var(--accent5); }
+  .key-alert.red { border-color: var(--accent4); background: rgba(247,129,102,0.06); }
+  .key-alert.red strong { color: var(--accent4); }
+
+  /* LIST */
+  ul.nice { list-style: none; padding: 0; }
+  ul.nice li {
+    padding: 5px 0 5px 18px;
+    position: relative;
+    font-size: 0.93rem;
+    color: var(--text);
+  }
+  ul.nice li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text2);
+    font-size: 0.8rem;
+    top: 6px;
+  }
+
+  /* TABLE */
+  table.nice {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 0.6rem;
+    font-size: 0.88rem;
+    margin-top: 10px;
   }
-  th {
-    background: rgba(108,143,255,.1);
-    color: var(--accent);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+  table.nice th {
+    background: var(--bg3);
+    color: var(--text2);
+    font-weight: 600;
     letter-spacing: 1px;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    padding: 8px 10px;
+    padding: 8px 12px;
     text-align: left;
     border-bottom: 1px solid var(--border);
   }
-  td {
-    padding: 7px 10px;
-    border-bottom: 1px solid rgba(42,45,58,.6);
-    color: #bcc0d4;
+  table.nice td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
   }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(255,255,255,.02); }
+  table.nice tr:last-child td { border-bottom: none; }
 
-  code {
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--code-bg);
-    color: var(--accent4);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 12px;
-  }
-
-  .tag {
+  /* PILL */
+  .pill {
     display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 3px;
     margin-left: 6px;
-    vertical-align: middle;
   }
-  .tag-blue { background: rgba(108,143,255,.15); color: var(--accent); }
-  .tag-green { background: rgba(80,227,164,.15); color: var(--accent3); }
-  .tag-yellow { background: rgba(255,197,61,.15); color: var(--accent4); }
+  .pill.g { background: rgba(63,185,80,0.2); color: var(--accent2); }
+  .pill.b { background: rgba(88,166,255,0.2); color: var(--accent3); }
+  .pill.o { background: rgba(232,160,32,0.2); color: var(--accent); }
 
-  .sep { height: 1px; background: var(--border); margin: 1rem 0; }
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
 
-  .big-def {
-    font-size: 14px; color: #bcc0d4; margin-bottom: 0.5rem;
+  /* FULL WIDTH CARD */
+  .card-full {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
   }
+
+  /* EXAMPLE BOX */
+  .example {
+    background: var(--bg3);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    font-size: 0.88rem;
+  }
+  .example .ex-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text2);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  .section-intro {
+    color: var(--text2);
+    font-size: 0.93rem;
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  b { font-weight: 600; color: var(--text); }
+  .em { font-style: italic; color: var(--text2); }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="label">Ripasso verifica</div>
-  <h1>Informazione, <span>Trasmissione</span> & Reti</h1>
-  <p>Tutti gli argomenti delle due slide — in bocca al lupo! 🍀</p>
-</header>
-
-<nav>
-  <a onclick="document.getElementById('bit').scrollIntoView({behavior:'smooth'})">Bit & Byte</a>
-  <a onclick="document.getElementById('shannon').scrollIntoView({behavior:'smooth'})">Shannon</a>
-  <a onclick="document.getElementById('sorgente').scrollIntoView({behavior:'smooth'})">Sorgente</a>
-  <a onclick="document.getElementById('canale').scrollIntoView({behavior:'smooth'})">Canale</a>
-  <a onclick="document.getElementById('bandwidth').scrollIntoView({behavior:'smooth'})">Bandwidth</a>
-  <a onclick="document.getElementById('bitrate').scrollIntoView({behavior:'smooth'})">Bit-rate</a>
-  <a onclick="document.getElementById('throughput').scrollIntoView({behavior:'smooth'})">Throughput</a>
-  <a onclick="document.getElementById('latenza').scrollIntoView({behavior:'smooth'})">Latenza</a>
-  <a onclick="document.getElementById('duplex').scrollIntoView({behavior:'smooth'})">Duplex</a>
-  <a onclick="document.getElementById('reti').scrollIntoView({behavior:'smooth'})">Tipi di reti</a>
-  <a onclick="document.getElementById('indirizzi').scrollIntoView({behavior:'smooth'})">Indirizzi</a>
-</nav>
-
-<main>
-
-<!-- ───────── BIT E BYTE ───────── -->
-<section class="chapter" id="bit">
-  <div class="chapter-header">
-    <div class="chapter-num">01</div>
-    <div class="chapter-title">Bit e Byte</div>
-    <div class="chapter-line"></div>
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">⚡ Fisica — Unità 18 + Leggi di Ohm</p>
+  <h1>Riassunto Completo<br><span>Esame</span></h1>
+  <p>Tutto il necessario per un voto altissimo</p>
+  <div class="badge-row">
+    <span class="badge badge-ohm">Leggi di Ohm</span>
+    <span class="badge badge-mag">Fenomeni Magnetici</span>
+    <span class="badge badge-mag">Calcolo del Campo</span>
+    <span class="badge badge-mat">Campo nella Materia</span>
+    <span class="badge badge-forz">Forze sui Conduttori</span>
   </div>
+</div>
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Definizioni</div>
-    <p><strong>Bit</strong> — unità minima di informazione: una scelta tra due alternative (0 oppure 1).</p>
-    <p style="margin-top:.5rem"><strong>Byte</strong> — 8 bit. La memoria si misura in byte; la trasmissione in bit.</p>
-    <p style="margin-top:.5rem">Con <em>n</em> bit si rappresentano <strong>2ⁿ</strong> combinazioni.</p>
-  </div>
+<div class="container">
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Multipli: prefisso decimale vs binario</div>
-    <table>
-      <tr><th>Decimale</th><th>Valore</th><th>Binario</th><th>Valore</th></tr>
-      <tr><td>1 KB</td><td>1 000 byte</td><td>1 KiB</td><td>1 024 byte</td></tr>
-      <tr><td>1 MB</td><td>1 000 000 byte</td><td>1 MiB</td><td>1 048 576 byte</td></tr>
-      <tr><td>1 GB</td><td>10⁹ byte</td><td>1 GiB</td><td>2³⁰ byte</td></tr>
-    </table>
-    <div class="warning-box" style="margin-top:.8rem">
-      <strong>⚠ Trappola tipica:</strong> i produttori di hard disk usano i multipli decimali, Windows quelli binari → un disco da "500 GB" appare come ~465 GiB.
+  <!-- ===== LEGGI DI OHM ===== -->
+  <div class="unit-header">
+    <div class="unit-num ohm">Ω</div>
+    <div class="unit-title">
+      <h2>Le Due Leggi di Ohm</h2>
+      <p>Fondamenti di elettricità — prerequisiti al campo magnetico</p>
     </div>
-  </div>
-</section>
-
-<!-- ───────── SHANNON ───────── -->
-<section class="chapter" id="shannon">
-  <div class="chapter-header">
-    <div class="chapter-num">02</div>
-    <div class="chapter-title">Informazione di Shannon</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> L'idea chiave</div>
-    <p>Claude Shannon (Bell Labs, 1948) si chiese <em>quanti bit servono per trasmettere il risultato di un esperimento</em>. La risposta dipende da quanto il risultato è <strong>sorprendente</strong>: più è inaspettato, più informazione porta.</p>
-  </div>
-
-  <div class="card accent-green">
-    <div class="card-title"><span class="dot"></span> Formula</div>
-    <div class="formula">I = −log₂(p)</div>
-    <p>dove <em>p</em> è la probabilità dell'evento (numero tra 0.0 e 1.0).<br>
-    Più <em>p</em> è piccolo (evento raro) → più <em>I</em> è grande.</p>
   </div>
 
   <div class="grid2">
-    <div class="example-box">
-      <div class="ex-label">Esempio 1 — Moneta equa</div>
-      <p>p = 0.5 (testa o croce)</p>
-      <div class="result">I = −log₂(0.5) = <strong>1 bit</strong></div>
+    <div class="card highlight-green">
+      <h3 class="green">Prima Legge di Ohm</h3>
+      <div class="formula-box">
+        <span class="formula-big">V = R · I</span>
+        <span class="formula-label">V [Volt] — R [Ohm, Ω] — I [Ampere, A]</span>
+      </div>
+      <ul class="nice">
+        <li>La tensione ai capi di un conduttore è <b>direttamente proporzionale</b> alla corrente che vi scorre</li>
+        <li>La costante di proporzionalità è la <b>resistenza R</b></li>
+        <li>Vale per i conduttori <b>ohmici</b> (resistenza costante al variare di I)</li>
+        <li>Riscrivibile come: <span style="font-family:monospace">I = V/R</span> &nbsp;oppure&nbsp; <span style="font-family:monospace">R = V/I</span></li>
+      </ul>
     </div>
-    <div class="example-box">
-      <div class="ex-label">Esempio 2 — Mazzo di carte</div>
-      <p>p = 1/52 (asso di picche)</p>
-      <div class="result">I = log₂(52) ≈ <strong>5.7 bit</strong> (~6 bit)</div>
-    </div>
-  </div>
-  <div class="example-box" style="margin-top:.5rem">
-    <div class="ex-label">Esempio 3 — Evento certo</div>
-    <p>p ≈ 1 ("domani sorge il sole")</p>
-    <div class="result">I = −log₂(1) = <strong>0 bit</strong> — non comunica nulla di nuovo.</div>
-  </div>
-</section>
-
-<!-- ───────── SORGENTE & ENTROPIA ───────── -->
-<section class="chapter" id="sorgente">
-  <div class="chapter-header">
-    <div class="chapter-num">03</div>
-    <div class="chapter-title">Sorgente & Entropia di Shannon</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Sorgente di informazione</div>
-    <p>Qualsiasi cosa produca messaggi in modo <strong>non completamente prevedibile</strong>: una moneta, un dado, un sensore, un testo. Ogni simbolo emesso trasporta informazione.</p>
-  </div>
-
-  <div class="card accent-yellow">
-    <div class="card-title"><span class="dot"></span> Entropia di Shannon <code>H</code></div>
-    <p class="big-def">Misura quanto è <strong>imprevedibile</strong> una sorgente (media pesata dell'informazione su tutti i possibili eventi).</p>
-    <ul>
-      <li>Se sai già quasi con certezza cosa uscirà → <strong>entropia bassa</strong></li>
-      <li>Se tutti i risultati sono equiprobabili → <strong>entropia massima</strong></li>
-    </ul>
-    <div class="sep"></div>
-    <div class="example-box" style="margin:0">
-      <div class="ex-label">Esempio — Moneta truccata (60% testa, 40% croce)</div>
-      <div class="formula" style="margin:.4rem 0">H = −(0.6·log₂0.6) − (0.4·log₂0.4) ≈ 0.971 bit/lancio</div>
-      <p>Moneta equa → H = 1 bit/lancio. La moneta truccata è più prevedibile, quindi trasmette <em>meno</em> informazione per lancio.</p>
+    <div class="card highlight-green">
+      <h3 class="green">Seconda Legge di Ohm</h3>
+      <div class="formula-box">
+        <span class="formula-big">R = ρ · L / A</span>
+        <span class="formula-label">ρ = resistività [Ω·m] — L = lunghezza [m] — A = sezione [m²]</span>
+      </div>
+      <ul class="nice">
+        <li>La resistenza dipende dalla <b>geometria del conduttore</b> e dal <b>materiale</b></li>
+        <li>R <b>aumenta</b> con la lunghezza L</li>
+        <li>R <b>diminuisce</b> con la sezione A (più spesso = meno resistenza)</li>
+        <li><b>ρ</b> (resistività) è caratteristica del materiale; per i metalli aumenta con la temperatura</li>
+      </ul>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Entropia fisica vs Entropia dell'informazione</div>
-    <table>
-      <tr><th>Entropia fisica</th><th>Entropia dell'informazione</th></tr>
-      <tr><td>gas in una stanza</td><td>sorgente di simboli</td></tr>
-      <tr><td>molecole ordinate</td><td>risultati prevedibili</td></tr>
-      <tr><td>molecole caotiche</td><td>risultati imprevedibili</td></tr>
+  <div class="card-full">
+    <h3 style="color:var(--accent2);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Resistenze in serie e in parallelo</h3>
+    <div class="grid2">
+      <div>
+        <div class="formula-box">
+          <span class="formula-big">R<sub>tot</sub> = R₁ + R₂ + ... + Rₙ</span>
+          <span class="formula-label">Resistenze in SERIE — stessa corrente, tensioni si sommano</span>
+        </div>
+      </div>
+      <div>
+        <div class="formula-box">
+          <span class="formula-big">1/R<sub>tot</sub> = 1/R₁ + 1/R₂ + ... + 1/Rₙ</span>
+          <span class="formula-label">Resistenze in PARALLELO — stessa tensione, correnti si sommano</span>
+        </div>
+      </div>
+    </div>
+    <div class="key-alert green" style="margin-top:8px;">
+      <strong>Potenza dissipata:</strong> P = V · I = R · I² = V²/R &nbsp;&nbsp; [Watt, W]
+    </div>
+  </div>
+
+  <!-- ===== LEZIONE 1 ===== -->
+  <div class="unit-header">
+    <div class="unit-num mag">1</div>
+    <div class="unit-title">
+      <h2>Fenomeni Magnetici</h2>
+      <p>I magneti · Linee di campo · Campo creato da corrente</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card highlight-blue">
+      <h3 class="blue">I Magneti — Concetti chiave</h3>
+      <ul class="nice">
+        <li>Ogni magnete ha <b>polo nord</b> e <b>polo sud</b></li>
+        <li>Poli <b>uguali si respingono</b>, poli <b>opposti si attraggono</b></li>
+        <li>I poli <b>non possono essere separati</b>: spezzando un magnete si ottengono due nuovi magneti ognuno con i suoi due poli</li>
+        <li>Non esistono <b>monopoli magnetici</b></li>
+        <li>Il campo magnetico si indica con il vettore <b>B̄</b> (campo vettoriale)</li>
+      </ul>
+      <div class="key-alert blue" style="margin-top:10px;">
+        <strong>Regola fondamentale:</strong> Non può esistere un magnete con un solo polo.
+      </div>
+    </div>
+    <div class="card highlight-blue">
+      <h3 class="blue">Le Linee del Campo Magnetico</h3>
+      <ul class="nice">
+        <li>La <b>tangente</b> a una linea di campo in un punto indica la direzione di B̄</li>
+        <li>La <b>densità delle linee</b> è proporzionale all'intensità del campo</li>
+        <li>Le linee di campo magnetico sono <b>sempre chiuse</b> (a differenza del campo elettrico)</li>
+        <li>Campo <b>uniforme</b>: linee parallele ed equidistanti (stesso vettore B̄ ovunque)</li>
+        <li>Si può ottenere campo uniforme piegando un magnete o con un <b>solenoide</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent3);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Campo magnetico creato da una corrente (Oersted, 1820)</h3>
+    <div class="grid2">
+      <div>
+        <ul class="nice">
+          <li>Oersted scoprì che un <b>campo magnetico</b> si genera intorno a un filo percorso da corrente elettrica</li>
+          <li>Per un filo rettilineo, le linee di campo sono <b>circonferenze concentriche</b> al filo</li>
+          <li>I piani delle circonferenze sono <b>perpendicolari</b> al filo</li>
+          <li>Le linee di campo magnetico sono sempre <b>linee chiuse</b></li>
+        </ul>
+      </div>
+      <div>
+        <div class="key-alert blue">
+          <strong>Regola della mano destra (filo rettilineo):</strong><br>
+          Il pollice indica il verso della corrente → le dita si chiudono indicando il <b>verso del campo B̄</b>
+        </div>
+        <div class="key-alert blue" style="margin-top:8px;">
+          <strong>Conclusione di Oersted:</strong><br>
+          Intorno a un filo percorso da corrente è presente un campo magnetico.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LEZIONE 2 ===== -->
+  <div class="unit-header">
+    <div class="unit-num calc">2</div>
+    <div class="unit-title">
+      <h2>Calcolo del Campo Magnetico</h2>
+      <p>Intensità · Formule · Filo · Spira · Solenoide</p>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Intensità del Campo Magnetico — Definizione</h3>
+    <div class="grid2">
+      <div>
+        <div class="formula-box">
+          <span class="formula-big">B = F / (i · l)</span>
+          <span class="formula-label">F = forza sul conduttore [N] — i = corrente [A] — l = lunghezza [m]</span>
+        </div>
+        <ul class="nice" style="margin-top:10px;">
+          <li>B è la costante di proporzionalità fra la forza e il prodotto i·l</li>
+          <li>Il campo magnetico esercita una <b>forza</b> su un conduttore percorso da corrente</li>
+          <li>F/i·l = costante → questa costante è B</li>
+        </ul>
+      </div>
+      <div>
+        <div class="key-alert">
+          <strong>Unità di misura:</strong><br>
+          B si misura in <b>Tesla [T]</b><br>
+          1 T = 1 N/(A·m)<br><br>
+          Prende il nome da <b>Nikola Tesla</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card highlight-orange">
+      <h3 class="orange">Filo Rettilineo<br><span class="em" style="font-size:0.8rem;">(Biot-Savart)</span></h3>
+      <div class="formula-box">
+        <span class="formula-big">B = k · i / d</span>
+        <span class="formula-label">d = distanza dal filo [m]</span>
+      </div>
+      <ul class="nice">
+        <li>B è <b>direttamente proporzionale</b> all'intensità di corrente i</li>
+        <li>B è <b>inversamente proporzionale</b> alla distanza d dal filo</li>
+        <li><b>k = 2×10⁻⁷ N/A²</b> (costante, nel vuoto)</li>
+      </ul>
+    </div>
+    <div class="card highlight-orange">
+      <h3 class="orange">Spira Circolare<br><span class="em" style="font-size:0.8rem;">(nel centro)</span></h3>
+      <div class="formula-box">
+        <span class="formula-big">B = k · π · i / r</span>
+        <span class="formula-label">r = raggio della spira [m]</span>
+      </div>
+      <ul class="nice">
+        <li>Formula valida per il <b>centro</b> della spira</li>
+        <li>B <b>perpendicolare</b> al piano della spira</li>
+        <li>Verso: <b>entrante</b> se corrente oraria, <b>uscente</b> se antioraria</li>
+        <li>B proporzionale a i, inversamente proporzionale a r</li>
+      </ul>
+    </div>
+    <div class="card highlight-orange">
+      <h3 class="orange">Solenoide / Bobina</h3>
+      <div class="formula-box">
+        <span class="formula-big">B = 2π · k · i · N / l</span>
+        <span class="formula-label">N = numero spire — l = lunghezza [m]</span>
+      </div>
+      <ul class="nice">
+        <li>Campo <b>uniforme</b> dentro il solenoide lungo l'asse</li>
+        <li>All'esterno: linee molto distanziate → campo trascurabile</li>
+        <li>B dipende da: corrente i, numero spire N, lunghezza l</li>
+        <li><b>Non dipende</b> dal raggio delle spire</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Esempio numerico — Solenoide</h3>
+    <div class="example">
+      <div class="ex-title">Esempio</div>
+      Corrente = 5,0 A | Solenoide lungo 20 cm | N = 40 spire<br><br>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--accent);">
+        B = (6,28 × 2×10⁻⁷ N/A²) × (5,0 A) × 40 / 0,20 m ≈ <b>1,3 × 10⁻³ T</b>
+      </span>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Campo Magnetico Terrestre</h3>
+    <div class="grid2">
+      <ul class="nice">
+        <li>La Terra si comporta come un <b>magnete</b></li>
+        <li>Il polo <b>nord geografico</b> corrisponde al polo <b>sud magnetico</b> del magnete terrestre</li>
+        <li>L'asse magnetico è inclinato di circa <b>11°</b> rispetto all'asse di rotazione</li>
+        <li>La posizione dei poli varia nel tempo</li>
+      </ul>
+      <ul class="nice">
+        <li>Intensità molto bassa: ordine di <b>10⁻⁵ T</b></li>
+        <li>Una calamita da frigo: circa <b>10⁻² T</b></li>
+        <li>Solitamente trascurabile nelle misure vicino a magneti forti</li>
+        <li>Il campo terrestre deve essere sommato al campo del magnete in misure precise</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== LEZIONE 3 ===== -->
+  <div class="unit-header">
+    <div class="unit-num mat">3</div>
+    <div class="unit-title">
+      <h2>Il Campo Magnetico nella Materia</h2>
+      <p>Permeabilità · Para/Dia/Ferromagnetici · Elettromagnete</p>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Permeabilità Magnetica Relativa</h3>
+    <div class="grid2">
+      <div>
+        <div class="formula-box">
+          <span class="formula-big">μᵣ = B / B₀</span>
+          <span class="formula-label">B = campo nel mezzo — B₀ = campo nel vuoto</span>
+        </div>
+        <ul class="nice" style="margin-top:10px;">
+          <li>μᵣ indica quante volte il campo nel mezzo è maggiore/minore di quello nel vuoto</li>
+          <li>Per l'<b>aria</b>: μᵣ ≈ 1 (come il vuoto, ottima approssimazione)</li>
+          <li>Il campo nel ferro con solenoide: <span style="font-family:monospace">B = μᵣ · B₀ = μᵣ · 2π·k·i·N/l</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="key-alert purple">
+          <strong>Effetto nei solenoidi:</strong><br>
+          Inserendo un nucleo di ferro (μᵣ = 5000) nel solenoide, il campo si moltiplica per 5000 rispetto al vuoto!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card highlight-purple">
+      <h3 class="purple">Paramagnetiche</h3>
+      <div class="formula-box">
+        <span class="formula-big">μᵣ > 1</span>
+        <span class="formula-label">(leggermente &gt; 1)</span>
+      </div>
+      <ul class="nice">
+        <li>Es: alluminio, platino</li>
+        <li>B leggermente <b>superiore</b> a B₀</li>
+        <li>μᵣ costante per T non troppo elevate</li>
+        <li>Alluminio: μᵣ = 1,000022</li>
+      </ul>
+    </div>
+    <div class="card highlight-purple">
+      <h3 class="purple">Diamagnetiche</h3>
+      <div class="formula-box">
+        <span class="formula-big">μᵣ &lt; 1</span>
+        <span class="formula-label">(leggermente &lt; 1)</span>
+      </div>
+      <ul class="nice">
+        <li>Es: rame, acqua, argento, vetro</li>
+        <li>B leggermente <b>inferiore</b> a B₀</li>
+        <li>μᵣ <b>non dipende</b> dalla temperatura</li>
+        <li>Rame: μᵣ = 0,999990</li>
+      </ul>
+    </div>
+    <div class="card highlight-purple">
+      <h3 class="purple">Ferromagnetiche</h3>
+      <div class="formula-box">
+        <span class="formula-big">μᵣ >> 1</span>
+        <span class="formula-label">(molto &gt;&gt; 1)</span>
+      </div>
+      <ul class="nice">
+        <li>Es: ferro, nichel, leghe speciali</li>
+        <li>Ferro: μᵣ ≈ <b>5000</b></li>
+        <li>Permalloy: μᵣ ≈ <b>100.000</b></li>
+        <li>μᵣ <b>non costante</b>: varia con B e con la storia termica del materiale</li>
+        <li>Possono magnetizzarsi <b>permanentemente</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Temperatura di Curie — Elettromagnete</h3>
+    <div class="grid2">
+      <div>
+        <div class="key-alert purple">
+          <strong>Temperatura di Curie:</strong><br>
+          Al di sopra di questa temperatura le sostanze ferromagnetiche perdono le loro proprietà e si comportano come paramagnetiche.<br>
+          Per il ferro: <strong>770 °C</strong>
+        </div>
+      </div>
+      <div>
+        <div class="key-alert purple">
+          <strong>Elettromagnete:</strong><br>
+          Formato da un nucleo di <b>ferro dolce</b> (o acciaio a basso carbonio) avvolto da una bobina.<br>
+          Quando passa corrente → campo intenso.<br>
+          Quando si interrompe → il cilindro si <b>smagnetizza</b> e il campo torna quasi nullo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Tabella Permeabilità Magnetica Relativa</h3>
+    <table class="nice">
+      <tr><th>Tipo</th><th>Sostanza</th><th>μᵣ</th></tr>
+      <tr><td>Ferromagnetica</td><td>Ferro</td><td>5000</td></tr>
+      <tr><td>Ferromagnetica</td><td>Nichel</td><td>100–600</td></tr>
+      <tr><td>Ferromagnetica</td><td>Leghe speciali (permalloy)</td><td>≈100.000</td></tr>
+      <tr><td>Paramagnetica</td><td>Aria</td><td>1,0000004</td></tr>
+      <tr><td>Paramagnetica</td><td>Alluminio</td><td>1,000022</td></tr>
+      <tr><td>Paramagnetica</td><td>Platino</td><td>1,0003</td></tr>
+      <tr><td>Diamagnetica</td><td>Acqua</td><td>0,999910</td></tr>
+      <tr><td>Diamagnetica</td><td>Argento</td><td>0,999981</td></tr>
+      <tr><td>Diamagnetica</td><td>Rame</td><td>0,999990</td></tr>
+      <tr><td>Diamagnetica</td><td>Vetro</td><td>0,999987</td></tr>
     </table>
   </div>
-</section>
 
-<!-- ───────── CANALE ───────── -->
-<section class="chapter" id="canale">
-  <div class="chapter-header">
-    <div class="chapter-num">04</div>
-    <div class="chapter-title">Il Canale di Trasmissione</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Cos'è un canale</div>
-    <p>Il mezzo fisico su cui viaggiano i dati tra due dispositivi: cavo Ethernet, fibra ottica, onde radio WiFi, segnale 4G.</p>
-    <ul style="margin-top:.5rem">
-      <li>Non è mai "ideale": ha limiti fisici, introduce ritardi, può perdere dati</li>
-      <li>I bit viaggiano in serie (uno alla volta)</li>
-      <li>I dati vengono divisi in <strong>pacchetti</strong>, trasmessi separatamente e riassemblati a destinazione</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ───────── BANDWIDTH ───────── -->
-<section class="chapter" id="bandwidth">
-  <div class="chapter-header">
-    <div class="chapter-num">05</div>
-    <div class="chapter-title">Larghezza di Banda (Bandwidth)</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Definizione</div>
-    <p>La <strong>massima quantità di dati al secondo</strong> che un canale può trasportare. È una proprietà del canale fisico.</p>
-    <p style="margin-top:.4rem">Unità: <code>bps</code> · Multipli: <code>Kbps</code> (10³) · <code>Mbps</code> (10⁶) · <code>Gbps</code> (10⁹)</p>
-  </div>
-
-  <div class="card accent-green">
-    <div class="card-title"><span class="dot"></span> Esempi di bandwidth</div>
-    <table>
-      <tr><th>Tecnologia</th><th>Bandwidth</th></tr>
-      <tr><td>Ethernet Gigabit</td><td>1 Gbps</td></tr>
-      <tr><td>WiFi 802.11ac (WiFi 5 GHz)</td><td>fino a 1.3 Gbps</td></tr>
-      <tr><td>FTTH (Fiber To The Home)</td><td>1–10 Gbps</td></tr>
-      <tr><td>4G LTE</td><td>50–150 Mbps</td></tr>
-    </table>
-  </div>
-
-  <div class="warning-box">
-    <strong>Nota terminologica:</strong> in telecomunicazioni "larghezza di banda" indica l'intervallo di frequenze (Hz). Nell'uso informatico comune i due significati si sovrappongono e si usa per indicare i bit/s — tecnicamente un'imprecisione.
-  </div>
-</section>
-
-<!-- ───────── BIT-RATE ───────── -->
-<section class="chapter" id="bitrate">
-  <div class="chapter-header">
-    <div class="chapter-num">06</div>
-    <div class="chapter-title">Bit-rate</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Definizione</div>
-    <p>Quantità di informazione trasferita per unità di tempo durante una trasmissione specifica (un video, uno stream, un download). È sempre <strong>≤ bandwidth</strong> del canale.</p>
-  </div>
-
-  <div class="card accent-yellow">
-    <div class="card-title"><span class="dot"></span> Bit-rate dei video</div>
-    <table>
-      <tr><th>Contenuto</th><th>Bit-rate</th></tr>
-      <tr><td>YouTube 1080p</td><td>~8 Mbps</td></tr>
-      <tr><td>YouTube 4K</td><td>~35–45 Mbps</td></tr>
-      <tr><td>Netflix 4K HDR</td><td>~15 Mbps (compressione più efficiente)</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ───────── THROUGHPUT ───────── -->
-<section class="chapter" id="throughput">
-  <div class="chapter-header">
-    <div class="chapter-num">07</div>
-    <div class="chapter-title">Throughput & Buffering</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Throughput</div>
-    <p>Il bit-rate <strong>effettivamente ottenuto</strong>, al netto di tutte le inefficienze, in un determinato momento. È ciò che misura uno speedtest. Sempre ≤ bandwidth.</p>
-  </div>
-
-  <div class="card accent-pink">
-    <div class="card-title"><span class="dot"></span> Perché il throughput è minore della bandwidth</div>
-    <ul>
-      <li><strong>Overhead dei protocolli</strong> — dati aggiuntivi necessari per il funzionamento della rete</li>
-      <li><strong>Errori e ritrasmissioni</strong> — alcuni pacchetti vengono persi e ritrasmessi</li>
-      <li><strong>Contesa del canale</strong> — il WiFi è condiviso da più dispositivi contemporaneamente</li>
-      <li><strong>Elaborazione dei router</strong> — ogni dispositivo lungo il percorso introduce ritardi minimi</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Perché i video vanno in buffering</div>
-    <p>Il <strong>bit-rate richiesto</strong> dal video (es. 10 Mbps) supera il <strong>throughput disponibile</strong> (es. 5 Mbps). Le soluzioni sono:</p>
-    <ul style="margin-top:.4rem">
-      <li>Fermarsi e aspettare di accumulare dati (<strong>buffering</strong>)</li>
-      <li>Abbassare automaticamente la qualità (es. da 1080p a 720p) — come fanno YouTube e Netflix</li>
-    </ul>
-  </div>
-
-  <div class="card accent-green">
-    <div class="card-title"><span class="dot"></span> Esercizio: Download di un gioco (40 GB, 1 Gbps)</div>
-    <div class="example-box">
-      <div class="ex-label">Soluzione</div>
-      <p>1. Converti in bit: 40 GB × 8 = <strong>320 Gb</strong></p>
-      <p>2. Dividi per la bandwidth: 320 Gb ÷ 1 Gbps = <strong>320 s</strong></p>
-      <div class="result">≈ 5 minuti e 20 secondi</div>
-      <p style="margin-top:.4rem">Nella realtà ci si mette di più (throughput < bandwidth per tutti i motivi sopra).</p>
-    </div>
-  </div>
-</section>
-
-<!-- ───────── LATENZA ───────── -->
-<section class="chapter" id="latenza">
-  <div class="chapter-header">
-    <div class="chapter-num">08</div>
-    <div class="chapter-title">Latenza</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Definizione</div>
-    <p>Il tempo che un bit impiega a raggiungere la destinazione. Si misura in <strong>millisecondi (ms)</strong>, si misura con il comando <code>ping</code>. Latenza e bandwidth sono grandezze <strong>indipendenti</strong>.</p>
-  </div>
-
-  <div class="card accent-yellow">
-    <div class="card-title"><span class="dot"></span> Esempio: consegna a mano di un HD</div>
-    <div class="example-box">
-      <p>Consegno un HD da 1 TB a mano in 30 minuti (1800 s).</p>
-      <p>1 TB ≈ 8000 Gb → bit-rate: 8000 Gb ÷ 1800 s ≈ <strong>4.4 Gbps</strong></p>
-      <div class="result">MA latenza = 30 minuti!</div>
-      <p style="margin-top:.3rem">Questo metodo è stato usato davvero per trasferire i dati della prima immagine di un buco nero.</p>
+  <!-- ===== LEZIONE 4 ===== -->
+  <div class="unit-header">
+    <div class="unit-num forz">4</div>
+    <div class="unit-title">
+      <h2>Forze su Conduttori Percorsi da Corrente</h2>
+      <p>Forza su conduttore · Spira in campo B · Legge di Ampère</p>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Quando conta la latenza vs la bandwidth</div>
-    <table>
-      <tr><th>Applicazione</th><th>Cosa conta di più</th></tr>
-      <tr><td>Giochi online, videoconferenze</td><td><strong>Latenza bassa</strong> (fondamentale)</td></tr>
-      <tr><td>Streaming Netflix/YouTube, download</td><td><strong>Bandwidth alta</strong> (qualche secondo di ritardo iniziale va bene)</td></tr>
+  <div class="grid2">
+    <div class="card highlight-red">
+      <h3 class="red">Forza su un Conduttore</h3>
+      <div class="formula-box">
+        <span class="formula-big">F = B⊥ · i · l</span>
+        <span class="formula-label">B⊥ = componente di B perpendicolare al conduttore</span>
+      </div>
+      <ul class="nice">
+        <li>Caso <b>generale</b>: il conduttore forma un angolo α con il campo</li>
+        <li><span style="font-family:monospace">F = B · i · l · sen(α)</span></li>
+        <li>F è <b>massima</b> quando campo e corrente sono <b>paralleli 90°</b> (sen 90°=1)</li>
+        <li>F è <b>nulla</b> quando campo e corrente sono paralleli (sen 0°=0)</li>
+        <li>Direzione: <b>perpendicolare</b> al piano individuato da B e dalla direzione della corrente</li>
+      </ul>
+      <div class="key-alert red" style="margin-top:10px;">
+        <strong>Regola della mano destra (forza):</strong><br>
+        Pollice → verso corrente i | Dita → verso campo B | Forza → esce dal palmo
+      </div>
+    </div>
+    <div class="card highlight-red">
+      <h3 class="red">Spira Rettangolare in Campo B</h3>
+      <ul class="nice">
+        <li>Se la spira è <b>parallela</b> alle linee di campo: sui lati perpendicolari si genera una <b>coppia di forze</b> che la fa ruotare</li>
+        <li>La spira ruota finché è <b>perpendicolare</b> al campo → momento della coppia = 0</li>
+        <li>Per effetto dell'inerzia, la spira supera la posizione di equilibrio → si genera una coppia opposta che la riporta → la spira <b>oscilla</b></li>
+        <li>L'attrito la ferma perpendicolare al campo</li>
+        <li><b>Principio del motore elettrico</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <h3 style="color:var(--accent4);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Legge di Ampère — Interazione fra Correnti</h3>
+    <div class="grid2">
+      <div>
+        <div class="formula-box">
+          <span class="formula-big">F/l = k · i₁ · i₂ / d</span>
+          <span class="formula-label">k = 2×10⁻⁷ N/A² — d = distanza tra i fili [m] — l = lunghezza considerata [m]</span>
+        </div>
+        <ul class="nice" style="margin-top:10px;">
+          <li>Due fili paralleli a distanza d, percorsi da correnti i₁ e i₂</li>
+          <li>La forza è <b>direttamente proporzionale</b> alle correnti i₁ e i₂</li>
+          <li>La forza è <b>inversamente proporzionale</b> alla distanza d</li>
+          <li>Correnti <b>equiverse</b> → i fili si <b>attraggono</b></li>
+          <li>Correnti <b>opposte</b> → i fili si <b>respingono</b></li>
+        </ul>
+      </div>
+      <div>
+        <div class="key-alert red">
+          <strong>Definizione dell'Ampere (SI):</strong><br>
+          Una corrente di <b>1 A</b> è quella che, scorrendo in due fili rettilinei molto lunghi e paralleli posti alla distanza di <b>1 m</b>, produce una forza di attrazione o repulsione di <b>2×10⁻⁷ N per ogni metro</b> di filo.
+        </div>
+        <div class="example">
+          <div class="ex-title">Esempio numerico</div>
+          i₁ = 3,0 A, i₂ = 5,0 A, d = 10 cm = 0,10 m<br><br>
+          <span style="font-family:'JetBrains Mono',monospace;color:var(--accent4);">
+            F/l = (2×10⁻⁷) × 3,0 × 5,0 / 0,10 = <b>3×10⁻⁵ N/m</b>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RIEPILOGO FORMULE ===== -->
+  <div class="unit-header" style="margin-top:60px;">
+    <div class="unit-num" style="color:#fff;font-size:2rem;">∑</div>
+    <div class="unit-title">
+      <h2>Riepilogo Formule — Scheda Rapida</h2>
+      <p>Tutte le formule fondamentali in un colpo d'occhio</p>
+    </div>
+  </div>
+
+  <div class="card-full">
+    <table class="nice">
+      <tr>
+        <th>Grandezza / Legge</th>
+        <th>Formula</th>
+        <th>Unità</th>
+        <th>Note</th>
+      </tr>
+      <tr>
+        <td><b>Prima legge di Ohm</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">V = R · I</td>
+        <td>V, Ω, A</td>
+        <td>Conduttori ohmici</td>
+      </tr>
+      <tr>
+        <td><b>Seconda legge di Ohm</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">R = ρ · L / A</td>
+        <td>Ω, Ω·m, m, m²</td>
+        <td>ρ = resistività del materiale</td>
+      </tr>
+      <tr>
+        <td><b>Intensità campo B</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">B = F / (i · l)</td>
+        <td>T = N/(A·m)</td>
+        <td>Definizione di B</td>
+      </tr>
+      <tr>
+        <td><b>Filo rettilineo (Biot-Savart)</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">B = k · i / d</td>
+        <td>T</td>
+        <td>k = 2×10⁻⁷ N/A²</td>
+      </tr>
+      <tr>
+        <td><b>Spira circolare (centro)</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">B = k · π · i / r</td>
+        <td>T</td>
+        <td>r = raggio della spira</td>
+      </tr>
+      <tr>
+        <td><b>Solenoide (asse)</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">B = 2π · k · i · N / l</td>
+        <td>T</td>
+        <td>N = n° spire, l = lunghezza</td>
+      </tr>
+      <tr>
+        <td><b>Solenoide con materiale</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">B = μᵣ · B₀</td>
+        <td>T</td>
+        <td>μᵣ = permeabilità relativa</td>
+      </tr>
+      <tr>
+        <td><b>Forza su conduttore</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">F = B · i · l · sen(α)</td>
+        <td>N</td>
+        <td>α = angolo tra B e corrente</td>
+      </tr>
+      <tr>
+        <td><b>Legge di Ampère (tra fili)</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">F/l = k · i₁ · i₂ / d</td>
+        <td>N/m</td>
+        <td>Definisce l'Ampere</td>
+      </tr>
+      <tr>
+        <td><b>Permeabilità relativa</b></td>
+        <td style="font-family:'JetBrains Mono',monospace">μᵣ = B / B₀</td>
+        <td>adimensionale</td>
+        <td>Aria ≈ 1, Ferro ≈ 5000</td>
+      </tr>
     </table>
   </div>
-</section>
 
-<!-- ───────── DUPLEX ───────── -->
-<section class="chapter" id="duplex">
-  <div class="chapter-header">
-    <div class="chapter-num">09</div>
-    <div class="chapter-title">Modalità di Trasmissione: Duplex</div>
-    <div class="chapter-line"></div>
+  <!-- TEST AL VOLO ANSWERS -->
+  <div class="unit-header" style="margin-top:50px;">
+    <div class="unit-num" style="color:var(--accent2);font-size:2rem;">✓</div>
+    <div class="unit-title">
+      <h2>Test al Volo — Risposte</h2>
+      <p>Vero/Falso dalle lezioni</p>
+    </div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <div class="card-title"><span class="dot"></span> Simplex</div>
-      <p>Trasmissione in <strong>una sola direzione</strong>. Chiamato anche <em>Broadcasting</em>.</p>
-      <p style="margin-top:.4rem; font-size:13px; color:var(--muted)">Esempi: TV digitale terrestre, satellite, GPS.</p>
+      <h3 style="color:var(--accent2);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Lezione 1</h3>
+      <ul class="nice">
+        <li>Non può esistere un magnete con un solo polo → <span class="pill g">VERO</span></li>
+        <li>Il campo magnetico è un campo scalare → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span> (è vettoriale)</li>
+        <li>Le linee di campo magnetico sono sempre chiuse → <span class="pill g">VERO</span></li>
+        <li>Un filo elettrico genera un campo magnetico uniforme → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span></li>
+      </ul>
     </div>
-    <div class="card accent-green">
-      <div class="card-title"><span class="dot"></span> Full-Duplex</div>
-      <p>Trasmissione bidirezionale <strong>simultanea</strong> (si manda e riceve allo stesso tempo).</p>
-      <p style="margin-top:.4rem; font-size:13px; color:var(--muted)">Esempi: telefonate, Ethernet cablato.</p>
-    </div>
-  </div>
-  <div class="card accent-pink" style="margin-top:0">
-    <div class="card-title"><span class="dot"></span> Half-Duplex</div>
-    <p>Bidirezionale ma <strong>non simultaneo</strong>: si può comunicare in entrambe le direzioni ma una alla volta. Chi riceve deve aspettare che il trasmettitore finisca prima di rispondere.</p>
-    <p style="margin-top:.4rem; font-size:13px; color:var(--muted)">Esempi: WiFi, Bluetooth, walkie-talkie, comunicazioni radio di emergenza.</p>
-  </div>
-</section>
-
-<!-- ───────── TIPI DI RETI ───────── -->
-<section class="chapter" id="reti">
-  <div class="chapter-header">
-    <div class="chapter-num">10</div>
-    <div class="chapter-title">Tipi di Reti per Distanza</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <table style="margin-bottom:1rem">
-    <tr>
-      <th>Sigla</th><th>Nome</th><th>Copertura</th><th>Tecnologia</th>
-    </tr>
-    <tr>
-      <td><code>PAN</code></td>
-      <td>Personal Area Network</td>
-      <td>Pochi metri (intorno a una persona)</td>
-      <td>Bluetooth</td>
-    </tr>
-    <tr>
-      <td><code>LAN</code></td>
-      <td>Local Area Network</td>
-      <td>Singolo edificio / abitazione / scuola / azienda</td>
-      <td>Ethernet (rame o fibra)</td>
-    </tr>
-    <tr>
-      <td><code>WLAN</code></td>
-      <td>Wireless LAN</td>
-      <td>Come LAN, ma senza cavi</td>
-      <td>WiFi (IEEE 802.11)</td>
-    </tr>
-    <tr>
-      <td><code>MAN</code></td>
-      <td>Metropolitan Area Network</td>
-      <td>Area cittadina (interconnessione di più LAN)</td>
-      <td>Ethernet fibra + WiFi</td>
-    </tr>
-    <tr>
-      <td><code>WAN</code></td>
-      <td>Wide Area Network</td>
-      <td>Regioni, paesi, mondo intero</td>
-      <td>Fibra ottica, circuiti in affitto</td>
-    </tr>
-  </table>
-
-  <div class="grid2">
     <div class="card">
-      <div class="card-title"><span class="dot"></span> Intranet</div>
-      <p>Rete privata aziendale. L'accesso è riservato solo a chi fa parte dell'organizzazione.</p>
+      <h3 style="color:var(--accent2);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Lezione 2 & 3</h3>
+      <ul class="nice">
+        <li>Il polo nord magnetico coincide con quello geografico → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span></li>
+        <li>Il campo magnetico terrestre è molto intenso → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span></li>
+        <li>L'intensità di B cambia a seconda del materiale → <span class="pill g">VERO</span></li>
+        <li>Nei ferromagnetici μᵣ non è costante → <span class="pill g">VERO</span></li>
+        <li>Gli elettromagneti con nucleo di alluminio hanno il campo più intenso → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span></li>
+      </ul>
     </div>
-    <div class="card accent-yellow">
-      <div class="card-title"><span class="dot"></span> Extranet</div>
-      <p>Estensione di una LAN che permette anche a soggetti esterni di accedere a certi servizi, con autenticazione e sicurezza.</p>
+    <div class="card">
+      <h3 style="color:var(--accent2);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Lezione 4</h3>
+      <ul class="nice">
+        <li>La forza su conduttore è massima quando campo e corrente sono paralleli → <span class="pill g">VERO</span> (perpendicolari tra loro)</li>
+        <li>Due fili percorsi da correnti concordi si attraggono → <span class="pill g">VERO</span></li>
+        <li>Una spira in un campo magnetico ruota all'infinito → <span class="pill" style="background:rgba(247,129,102,0.2);color:var(--accent4);">FALSO</span> (oscilla poi si ferma)</li>
+      </ul>
     </div>
-  </div>
-
-  <div class="warning-box" style="margin-top:.5rem">
-    <strong>Gerarchia:</strong> PAN → LAN / WLAN → MAN (più LAN collegate) → WAN (più MAN collegate) → Internet
-  </div>
-</section>
-
-<!-- ───────── INDIRIZZI ───────── -->
-<section class="chapter" id="indirizzi">
-  <div class="chapter-header">
-    <div class="chapter-num">11</div>
-    <div class="chapter-title">Modello TCP/IP & Indirizzi di Rete</div>
-    <div class="chapter-line"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Il modello TCP/IP (4 livelli)</div>
-    <table>
-      <tr><th>Livello</th><th>Indirizzo usato</th><th>Esempio</th></tr>
-      <tr><td>Applicazione</td><td>Numero telefonico / nome</td><td>URL, email</td></tr>
-      <tr><td>Trasporto</td><td><strong>Porta</strong> (16 bit)</td><td>Porta 80 = HTTP</td></tr>
-      <tr><td>Internet</td><td><strong>Indirizzo IP</strong></td><td>192.168.1.1</td></tr>
-      <tr><td>Rete (fisico)</td><td><strong>MAC Address</strong></td><td>A8:A1:59:9E:A0:7B</td></tr>
-    </table>
-  </div>
-
-  <div class="grid2">
-    <div class="card accent-green">
-      <div class="card-title"><span class="dot"></span> Numero di Porta <span class="tag tag-green">16 bit</span></div>
-      <p>Permette a un computer di gestire più connessioni contemporaneamente instradando i dati al processo corretto.</p>
-    </div>
-    <div class="card accent-blue" style="border-color: rgba(108,143,255,.3)">
-      <div class="card-title"><span class="dot"></span> Indirizzo IP</div>
-      <p>Identifica univocamente un dispositivo (host) su una rete IP.</p>
-      <div class="formula" style="font-size:12px">IPv4: 192.168.1.1 (32 bit)
-IPv6: fe80::d5af:63a3:a460:4409 (128 bit)</div>
+    <div class="card">
+      <h3 style="color:var(--accent2);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Costanti Fondamentali da Ricordare</h3>
+      <ul class="nice">
+        <li><b>k (Biot-Savart)</b> = 2×10⁻⁷ N/A²</li>
+        <li><b>Campo terrestre</b> ≈ 10⁻⁵ T</li>
+        <li><b>μᵣ ferro</b> ≈ 5000</li>
+        <li><b>T di Curie ferro</b> = 770 °C</li>
+        <li>Definizione Ampere: 2×10⁻⁷ N/m a 1 m di distanza</li>
+      </ul>
     </div>
   </div>
 
-  <div class="card accent-pink">
-    <div class="card-title"><span class="dot"></span> MAC Address <span class="tag tag-blue">48 bit / 6 byte</span></div>
-    <p>Codice <strong>univoco assegnato dal produttore</strong> a ogni scheda di rete (ethernet o wireless). Modificabile via software. Usato per l'accesso al livello fisico/rete.</p>
-    <div class="formula" style="margin-top:.6rem">Formato: A8:A1:59:9E:A0:7B
-          ↑ OUI (produttore) ↑ NIC Specific (dispositivo)</div>
-    <p style="font-size:13px; margin-top:.4rem; color:var(--muted)">I primi 3 byte identificano il produttore (OUI), gli ultimi 3 la scheda specifica.</p>
-  </div>
-</section>
+</div>
 
-</main>
+<div class="footer">
+  Unità 18 — Il Campo Magnetico · Zanichelli · Riassunto per l'esame
+</div>
+
 </body>
 </html>
