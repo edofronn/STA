@@ -3,795 +3,1016 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Riassunto Esame – Campo Magnetico</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Fisica – Guida Facile</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #1c2333;
-    --accent: #e8a020;
-    --accent2: #3fb950;
-    --accent3: #58a6ff;
-    --accent4: #f78166;
-    --accent5: #bc8cff;
-    --text: #e6edf3;
-    --text2: #8b949e;
-    --border: #30363d;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 300;
-    line-height: 1.75;
+    font-family: 'Nunito', sans-serif;
+    background: #f5f7ff;
+    color: #1a1a2e;
+    font-size: 16px;
+    line-height: 1.8;
   }
 
+  /* ── HERO ── */
   .hero {
-    background: linear-gradient(135deg, #0d1117 0%, #1a0a2e 50%, #0d1117 100%);
-    border-bottom: 2px solid var(--accent);
-    padding: 60px 40px 50px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: white;
+    padding: 60px 48px 48px;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(232,160,32,0.12) 0%, transparent 70%);
-  }
-  .hero-label {
-    font-family: 'JetBrains Mono', monospace;
+  .hero-badge {
+    display: inline-block;
+    background: #e94560;
+    color: white;
     font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--accent);
+    font-weight: 800;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
   }
   .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-size: 46px;
     font-weight: 900;
-    color: #fff;
     line-height: 1.1;
     margin-bottom: 12px;
   }
-  .hero h1 span { color: var(--accent); }
-  .hero p { color: var(--text2); font-size: 1rem; letter-spacing: 1px; }
-  .badge-row { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
-  .badge { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; }
-  .badge-ohm  { background: rgba(63,185,80,0.15); color: var(--accent2); border: 1px solid rgba(63,185,80,0.3); }
-  .badge-mag  { background: rgba(88,166,255,0.15); color: var(--accent3); border: 1px solid rgba(88,166,255,0.3); }
-  .badge-mat  { background: rgba(188,140,255,0.15); color: var(--accent5); border: 1px solid rgba(188,140,255,0.3); }
-  .badge-forz { background: rgba(247,129,102,0.15); color: var(--accent4); border: 1px solid rgba(247,129,102,0.3); }
+  .hero h1 span { color: #f5a623; }
+  .hero p {
+    font-size: 16px;
+    color: #8899bb;
+    max-width: 560px;
+  }
+  .hero-units {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-unit {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #aabbdd;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
 
-  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+  /* ── LAYOUT ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 48px 32px; }
 
-  .unit-header {
+  /* ── UNIT BANNER ── */
+  .unit-banner {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin: 60px 0 30px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    background: #1a1a2e;
+    color: white;
+    border-radius: 16px;
+    padding: 24px 32px;
+    margin: 48px 0 32px;
   }
   .unit-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 56px;
     font-weight: 900;
+    color: #f5a623;
     line-height: 1;
-    min-width: 60px;
-    text-align: center;
+    flex-shrink: 0;
   }
-  .unit-title h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; }
-  .unit-title p { font-size: 0.85rem; color: var(--text2); margin-top: 2px; }
+  .unit-label { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #8899bb; text-transform: uppercase; margin-bottom: 4px; }
+  .unit-name { font-size: 22px; font-weight: 800; }
 
-  /* DEFINIZIONE — il blocco principale */
-  .def-block {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 0;
-    margin-bottom: 14px;
-    overflow: hidden;
-  }
-  .def-header {
+  /* ── LESSON ── */
+  .lesson { margin-bottom: 48px; }
+  .lesson-title {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 20px 12px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
   }
-  .def-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
+  .lesson-circle {
+    width: 40px; height: 40px;
+    background: #e94560;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .lesson-title h2 { font-size: 24px; font-weight: 800; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 28px; }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f3460;
     text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #dde3ff;
   }
-  .def-tag.def   { background: rgba(88,166,255,0.15); color: var(--accent3); border: 1px solid rgba(88,166,255,0.3); }
-  .def-tag.legge { background: rgba(232,160,32,0.15); color: var(--accent); border: 1px solid rgba(232,160,32,0.3); }
-  .def-tag.form  { background: rgba(63,185,80,0.15); color: var(--accent2); border: 1px solid rgba(63,185,80,0.3); }
-  .def-tag.prop  { background: rgba(188,140,255,0.15); color: var(--accent5); border: 1px solid rgba(188,140,255,0.3); }
-  .def-tag.reg   { background: rgba(247,129,102,0.15); color: var(--accent4); border: 1px solid rgba(247,129,102,0.3); }
+  .section p { margin-bottom: 12px; }
 
-  .def-name {
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text);
+  /* ── CARDS ── */
+  .card {
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 16px 0;
   }
-  .def-body { padding: 16px 22px 18px; }
-
-  /* La definizione vera e propria — testo in evidenza */
-  .def-quote {
-    border-left: 3px solid var(--accent3);
-    background: rgba(88,166,255,0.05);
-    padding: 12px 18px;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 14px;
-    font-size: 0.97rem;
-    color: var(--text);
-    font-style: italic;
-    line-height: 1.7;
+  .card-law {
+    background: #fff8e1;
+    border: 2px solid #f5a623;
+    border-left: 6px solid #f5a623;
   }
-  .def-quote.orange { border-color: var(--accent);  background: rgba(232,160,32,0.05); }
-  .def-quote.green  { border-color: var(--accent2); background: rgba(63,185,80,0.05); }
-  .def-quote.purple { border-color: var(--accent5); background: rgba(188,140,255,0.05); }
-  .def-quote.red    { border-color: var(--accent4); background: rgba(247,129,102,0.05); }
+  .card-law .card-label { color: #b37600; }
 
-  /* Formula inline */
-  .formula-box {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 18px;
-    margin: 10px 0;
-    font-family: 'JetBrains Mono', monospace;
+  .card-formula {
+    background: #e8f4fd;
+    border: 2px solid #3498db;
+    border-left: 6px solid #3498db;
     text-align: center;
   }
-  .formula-big { font-size: 1.3rem; font-weight: 600; color: #fff; display: block; }
-  .formula-label { font-size: 0.72rem; color: var(--text2); margin-top: 6px; display: block; font-family: 'Source Sans 3', sans-serif; }
+  .card-formula .card-label { color: #1a6fa8; text-align: left; }
 
-  /* Note aggiuntive */
-  ul.note { list-style: none; padding: 0; margin-top: 10px; }
-  ul.note li {
-    padding: 4px 0 4px 18px;
-    position: relative;
-    font-size: 0.91rem;
-    color: var(--text2);
+  .card-example {
+    background: #eafaf1;
+    border: 2px solid #2ecc71;
+    border-left: 6px solid #2ecc71;
   }
-  ul.note li::before { content: '·'; position: absolute; left: 6px; color: var(--text2); }
-  ul.note li b { color: var(--text); font-weight: 600; }
+  .card-example .card-label { color: #1a7a40; }
 
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media(max-width:700px){ .grid2{ grid-template-columns:1fr; } }
+  .card-attention {
+    background: #fef9e7;
+    border: 2px solid #f39c12;
+    border-left: 6px solid #f39c12;
+  }
+  .card-attention .card-label { color: #9a6000; }
 
-  /* Tabella */
-  table.nice { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 10px; }
-  table.nice th { background: var(--bg3); color: var(--text2); font-weight: 600; letter-spacing: 1px; font-size: 0.75rem; text-transform: uppercase; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
-  table.nice td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
-  table.nice tr:last-child td { border-bottom: none; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  .card-simple {
+    background: #f3e5f5;
+    border: 2px solid #9c27b0;
+    border-left: 6px solid #9c27b0;
+  }
+  .card-simple .card-label { color: #6a1580; }
 
-  .pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; margin-left: 4px; }
-  .pill.g { background: rgba(63,185,80,0.2); color: var(--accent2); }
-  .pill.r { background: rgba(247,129,102,0.2); color: var(--accent4); }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+  .card-label {
+    font-size: 10px;
+    font-weight: 900;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--text2);
-    margin: 30px 0 14px;
+    margin-bottom: 8px;
   }
 
-  .example {
-    background: var(--bg3);
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    padding: 14px 18px;
+  .big-formula {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f3460;
+    margin: 10px 0;
+    font-style: italic;
+  }
+  .formula-legend {
+    font-size: 13px;
+    color: #555;
+    text-align: left;
     margin-top: 10px;
-    font-size: 0.88rem;
+    font-style: italic;
   }
-  .example .ex-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
 
-  .footer { text-align: center; padding: 30px; color: var(--text2); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; }
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 14px; border-radius: 10px; overflow: hidden; }
+  th { background: #0f3460; color: white; padding: 10px 14px; text-align: left; font-weight: 700; }
+  td { padding: 9px 14px; border-bottom: 1px solid #dde3ff; }
+  tr:nth-child(even) td { background: #f0f4ff; }
 
-  /* SCHEDA RAPIDA */
-  .quick-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 26px;
-    margin-bottom: 14px;
+  /* ── DIVIDER ── */
+  .divider { height: 3px; background: linear-gradient(90deg, #e94560, #f5a623, #3498db); border-radius: 3px; margin: 16px 0 0; }
+
+  /* ── HIGHLIGHT ── */
+  .hl-red { color: #e94560; font-weight: 800; }
+  .hl-blue { color: #0f3460; font-weight: 800; }
+  .hl-orange { color: #d35400; font-weight: 800; }
+
+  strong { color: #0f3460; }
+  em { color: #555; font-style: italic; }
+
+  /* ── INDEX ── */
+  .index-section {
+    background: #1a1a2e;
+    color: white;
+    padding: 40px 48px;
+    margin-top: 0;
   }
-  .quick-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text2);
-    margin-bottom: 14px;
-  }
+  .index-section h2 { font-size: 20px; font-weight: 800; color: #f5a623; margin-bottom: 20px; }
+  .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .index-item { font-size: 13px; color: #8899bb; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .index-item b { color: #e94560; }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <div class="hero">
-  <p class="hero-label">⚡ Fisica — Unità 18 + Leggi di Ohm</p>
-  <h1>Definizioni + Formule<br><span>Esame Completo</span></h1>
-  <p>Ogni concetto con la sua definizione precisa — dì esattamente quello che afferma</p>
-  <div class="badge-row">
-    <span class="badge badge-ohm">Leggi di Ohm</span>
-    <span class="badge badge-mag">Fenomeni Magnetici</span>
-    <span class="badge badge-mag">Calcolo del Campo</span>
-    <span class="badge badge-mat">Campo nella Materia</span>
-    <span class="badge badge-forz">Forze sui Conduttori</span>
+  <div class="hero-badge">Guida di Studio</div>
+  <h1>Fisica: <span>spiegata bene</span></h1>
+  <p>Tutto quello che devi sapere, scritto come se dovesse capirlo chiunque. Nessun concetto saltato, nessuna formula senza spiegazione.</p>
+  <div class="hero-units">
+    <div class="hero-unit">⚡ Unità 16 – Corrente Continua</div>
+    <div class="hero-unit">🔮 Unità 15 – Fenomeni Elettrostatici</div>
+    <div class="hero-unit">🧲 Unità 18 – Campo Magnetico</div>
   </div>
 </div>
 
-<div class="container">
+<div class="page">
 
-<!-- ═══════════════════════════════════════════════════════════
-     LEGGI DI OHM
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header">
-  <div class="unit-num" style="color:var(--accent2);">Ω</div>
-  <div class="unit-title">
-    <h2>Le Due Leggi di Ohm</h2>
-    <p>Fondamenti di elettricità — prerequisiti al magnetismo</p>
+<!-- ═══════════════════════════════════════════
+     UNITÀ 16 – CORRENTE CONTINUA
+═══════════════════════════════════════════ -->
+<div class="unit-banner">
+  <div class="unit-num">16</div>
+  <div>
+    <div class="unit-label">Unità</div>
+    <div class="unit-name">La Corrente Elettrica Continua</div>
   </div>
 </div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag legge">Legge</span>
-    <span class="def-name">Prima Legge di Ohm</span>
+<!-- ─── LEZIONE 3 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">3</div>
+    <h2>Le Leggi di Ohm</h2>
   </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      La <b>prima legge di Ohm</b> afferma che, per un conduttore ohmico a temperatura costante, la differenza di potenziale ai suoi capi è direttamente proporzionale all'intensità di corrente che lo attraversa. La costante di proporzionalità è la resistenza elettrica R del conduttore.
-    </div>
-    <div class="formula-box">
-      <span class="formula-big">V = R · I</span>
-      <span class="formula-label">V = tensione [Volt, V] &nbsp;|&nbsp; R = resistenza [Ohm, Ω] &nbsp;|&nbsp; I = corrente [Ampere, A]</span>
-    </div>
-    <ul class="note">
-      <li>Un conduttore è detto <b>ohmico</b> se la sua resistenza rimane costante al variare della corrente (il grafico V–I è una retta)</li>
-      <li>Si può riscrivere come <span class="mono">I = V/R</span> oppure <span class="mono">R = V/I</span></li>
-    </ul>
-  </div>
-</div>
+  <div class="divider"></div><br>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag legge">Legge</span>
-    <span class="def-name">Seconda Legge di Ohm</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      La <b>seconda legge di Ohm</b> afferma che la resistenza di un conduttore è direttamente proporzionale alla sua lunghezza e inversamente proporzionale alla sua sezione trasversale. La costante di proporzionalità è la resistività ρ, una grandezza che dipende solo dal materiale di cui è fatto il conduttore.
+  <!-- Cos'è la resistenza -->
+  <div class="section">
+    <h3>Cos'è la Resistenza Elettrica?</h3>
+    <p>Immagina un tubo dell'acqua. Se il tubo è stretto, l'acqua fatica a passare. Lo stesso succede con l'elettricità: il filo elettrico "oppone resistenza" al passaggio della corrente. Questa difficoltà si chiama <strong>resistenza elettrica</strong>.</p>
+    <p>Perché esiste questa resistenza? Perché gli elettroni che scorrono nel filo urtano continuamente gli ioni (gli atomi del metallo), come palline che rimbalzano su ostacoli. Più ci sono ostacoli, più è difficile passare, quindi più alta è la resistenza.</p>
+    <div class="card card-law">
+      <div class="card-label">📌 Definizione importante</div>
+      <p>La <strong>resistenza elettrica</strong> è il rapporto tra la differenza di potenziale (tensione) e l'intensità di corrente che scorre nel conduttore.</p>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">R = ρ · L / A</span>
-      <span class="formula-label">ρ = resistività [Ω·m] &nbsp;|&nbsp; L = lunghezza [m] &nbsp;|&nbsp; A = sezione trasversale [m²]</span>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">Resistenza = Tensione / Corrente</div>
+      <div class="formula-legend">In simboli: R = ΔV / i &nbsp;·&nbsp; Tensione in Volt (V), Corrente in Ampere (A), Resistenza in Ohm (Ω)</div>
     </div>
-    <ul class="note">
-      <li>La <b>resistività ρ</b> è una proprietà del materiale: nei metalli aumenta all'aumentare della temperatura</li>
-      <li>R aumenta se il conduttore è più lungo; R diminuisce se il conduttore è più spesso</li>
-    </ul>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Resistenza Elettrica</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote">
-      La <b>resistenza elettrica</b> di un conduttore è la grandezza fisica che misura l'opposizione che il conduttore offre al passaggio della corrente elettrica. È definita come il rapporto tra la differenza di potenziale applicata ai capi del conduttore e la corrente che lo attraversa: R = V/I. Si misura in ohm [Ω].
+  <!-- Prima legge di Ohm -->
+  <div class="section">
+    <h3>La Prima Legge di Ohm</h3>
+    <p>Nel 1827, il fisico tedesco Georg Simon Ohm scoprì qualcosa di fondamentale sui fili metallici: se tieni la temperatura costante, la resistenza non cambia. Non importa quanta corrente ci passi, né quanta tensione applichi — il rapporto tra tensione e corrente rimane sempre uguale.</p>
+    <div class="card card-law">
+      <div class="card-label">⚡ Prima Legge di Ohm</div>
+      <p>In un conduttore metallico tenuto a temperatura costante, il rapporto tra la tensione ai suoi capi e la corrente che lo percorre è <strong>sempre costante</strong>. Questo valore costante è la resistenza R.</p>
     </div>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">ΔV / i = R</div>
+      <div class="formula-legend">ΔV = differenza di potenziale in Volt (V) &nbsp;|&nbsp; i = corrente in Ampere (A) &nbsp;|&nbsp; R = resistenza in Ohm (Ω)<br>Ricorda: 1 Ω = 1 V diviso 1 A</div>
+    </div>
+    <div class="card card-simple">
+      <div class="card-label">🧠 In parole semplici</div>
+      <p>Se raddoppi la tensione, raddoppia anche la corrente. Se triplichi la tensione, triplica la corrente. Resistenza e tensione sono causa ed effetto, e la resistenza tiene tutto insieme come una costante di proporzione.</p>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Un filo ha resistenza 100 Ω. Lo colleghiamo a una batteria da 12 V. Quanto scorre?<br>
+      i = ΔV / R = 12 V / 100 Ω = <strong>0,12 A</strong><br>
+      Se invece usiamo una batteria da 24 V, la corrente diventa 0,24 A — il doppio!</p>
+    </div>
+    <p>Un conduttore che rispetta questa legge si chiama <strong>conduttore ohmico</strong> o <strong>resistore</strong>. Se disegni un grafico corrente–tensione per un resistore, ottieni una retta che parte dall'origine: più tensione → più corrente, in modo perfettamente lineare.</p>
   </div>
-</div>
 
-<div class="grid2">
-  <div class="def-block">
-    <div class="def-header">
-      <span class="def-tag form">Formula</span>
-      <span class="def-name">Resistenze in Serie</span>
+  <!-- Analogia idraulica -->
+  <div class="section">
+    <h3>L'Analogia con l'Acqua (per capirla davvero)</h3>
+    <p>Immagina tre tubi diversi che collegano due vasche d'acqua. L'altezza dell'acqua tra le due vasche è uguale per tutti (come la tensione), ma la quantità d'acqua che passa al secondo (la portata, come la corrente) dipende dal tubo:</p>
+    <div class="card card-attention">
+      <div class="card-label">💧 Analogia idraulica</div>
+      <p>• Un tubo <strong>più largo</strong> fa passare più acqua → meno resistenza elettrica.<br>
+      • Un tubo <strong>più corto</strong> fa passare più acqua → meno resistenza elettrica.<br>
+      • Un tubo con le <strong>pareti lisce</strong> fa passare più acqua → meno resistenza elettrica.<br><br>
+      In elettricità: un filo <strong>più largo, più corto e di materiale più conduttore</strong> ha meno resistenza.</p>
     </div>
-    <div class="def-body">
-      <div class="def-quote orange">
-        Due o più resistenze sono in <b>serie</b> quando sono percorse dalla stessa corrente. La resistenza equivalente è uguale alla somma delle singole resistenze.
+  </div>
+
+  <!-- Seconda legge di Ohm -->
+  <div class="section">
+    <h3>La Seconda Legge di Ohm</h3>
+    <p>La resistenza di un filo non è casuale: dipende da tre cose precise. Ohm le ha misurate e ne ha ricavato questa legge fondamentale.</p>
+    <div class="card card-law">
+      <div class="card-label">⚡ Seconda Legge di Ohm</div>
+      <p>La resistenza R di un conduttore è:<br>
+      • <strong>direttamente proporzionale alla lunghezza l</strong> — filo più lungo = più resistenza<br>
+      • <strong>inversamente proporzionale alla sezione A</strong> — filo più spesso = meno resistenza<br>
+      • <strong>dipende dal materiale</strong> di cui è fatto il filo (tramite la resistività ρ)</p>
+    </div>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">R = ρ · l / A</div>
+      <div class="formula-legend">
+        ρ (si legge "ro") = resistività del materiale, in Ω·m — è una proprietà del materiale<br>
+        l = lunghezza del filo in metri (m)<br>
+        A = area della sezione del filo in m²<br>
+        R = resistenza in Ohm (Ω)
       </div>
-      <div class="formula-box">
-        <span class="formula-big">R<sub>tot</sub> = R₁ + R₂ + … + Rₙ</span>
+    </div>
+    <div class="card card-simple">
+      <div class="card-label">🧠 Cos'è la resistività ρ?</div>
+      <p>È una misura di quanto ogni materiale sia "bravo" a condurre l'elettricità. L'argento ha ρ bassissima (ottimo conduttore), il silicio ha ρ altissima (cattivo conduttore). Ogni materiale ha la sua ρ caratteristica, misurata a 20 °C.</p>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Un conduttore di alluminio ha resistenza R.<br>
+      → Se raddoppio la <strong>lunghezza</strong> (stessa sezione): resistenza = <strong>2R</strong><br>
+      → Se raddoppio la <strong>sezione</strong> (stessa lunghezza): resistenza = <strong>R/2</strong></p>
+    </div>
+
+    <table>
+      <tr><th>Materiale</th><th>Resistività ρ (Ω·m) a 20 °C</th><th>Bravura</th></tr>
+      <tr><td>Argento</td><td>1,6 × 10⁻⁸</td><td>Ottimo conduttore</td></tr>
+      <tr><td>Rame</td><td>1,7 × 10⁻⁸</td><td>Ottimo conduttore</td></tr>
+      <tr><td>Oro</td><td>2,4 × 10⁻⁸</td><td>Ottimo conduttore</td></tr>
+      <tr><td>Alluminio</td><td>2,8 × 10⁻⁸</td><td>Buon conduttore</td></tr>
+      <tr><td>Ferro</td><td>9,7 × 10⁻⁸</td><td>Conduttore discreto</td></tr>
+      <tr><td>Acciaio</td><td>2,0 × 10⁻⁷</td><td>Meno buono</td></tr>
+      <tr><td>Costantana</td><td>5,0 × 10⁻⁷</td><td>Meno buono</td></tr>
+    </table>
+  </div>
+</div><!-- /lezione 3 -->
+
+
+<!-- ─── LEZIONE 6 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">6</div>
+    <h2>Resistività e Temperatura</h2>
+  </div>
+  <div class="divider"></div><br>
+
+  <div class="section">
+    <h3>Perché il caldo aumenta la resistenza?</h3>
+    <p>Finora abbiamo detto che la resistenza di un filo è costante. Ma questo vale <em>solo se la temperatura non cambia</em>. Se scaldiamo il filo, i suoi atomi iniziano a vibrare più velocemente e energicamente, come palline impazzite. Gli elettroni che cercano di passare urtano ancora di più questi atomi "agitati", quindi la resistenza <strong>aumenta</strong>.</p>
+    <p>Questo fenomeno vale per quasi tutti i metalli. Fanno eccezione alcuni materiali (come il carbonio o il germanio) in cui accade il contrario: più li scaldi, meno resistono.</p>
+  </div>
+
+  <div class="section">
+    <h3>La Formula della Resistività in Funzione della Temperatura</h3>
+    <p>Lontano dal punto di fusione, la resistività dei metalli cresce in modo lineare (cioè proporzionale) con la temperatura:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">ρ<sub>T</sub> = ρ₀ · (1 + α · ΔT)</div>
+      <div class="formula-legend">
+        ρ<sub>T</sub> = resistività alla temperatura T (quella che vuoi trovare)<br>
+        ρ₀ = resistività alla temperatura di partenza T₀ (di solito 0 °C o 20 °C)<br>
+        α = coefficiente di temperatura (dipende dal materiale, si misura in °C⁻¹)<br>
+        ΔT = T − T₀ = variazione di temperatura
       </div>
+    </div>
+    <div class="card card-simple">
+      <div class="card-label">🧠 In parole semplici</div>
+      <p>Parti dalla resistività iniziale ρ₀, poi la aumenti (o diminuisci) di un po' in base a quanto hai scaldat, usando il coefficiente α come "moltiplicatore" della variazione di temperatura.</p>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>La resistività del ferro a 20 °C è 10 × 10⁻⁸ Ω·m. Quanto vale a 520 °C?<br>
+      ΔT = 520 − 20 = 500 °C &nbsp;|&nbsp; α = 0,005 °C⁻¹<br>
+      ρ₅₂₀ = (10 × 10⁻⁸) × [1 + 0,005 × 500] = (10 × 10⁻⁸) × 3,5 = <strong>35 × 10⁻⁸ Ω·m</strong></p>
     </div>
   </div>
-  <div class="def-block">
-    <div class="def-header">
-      <span class="def-tag form">Formula</span>
-      <span class="def-name">Resistenze in Parallelo</span>
+
+  <div class="section">
+    <h3>Come cambia la Resistenza con la Temperatura</h3>
+    <p>Se la lunghezza e la sezione del filo rimangono invariate, anche la resistenza cambia con la stessa legge della resistività. Chiamando R₀ la resistenza iniziale (a temperatura T₀):</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">R<sub>T</sub> = R₀ · (1 + α · ΔT)</div>
+      <div class="formula-legend">R₀ = resistenza alla temperatura di partenza &nbsp;|&nbsp; α = coefficiente di temperatura &nbsp;|&nbsp; ΔT = variazione di temperatura</div>
     </div>
-    <div class="def-body">
-      <div class="def-quote orange">
-        Due o più resistenze sono in <b>parallelo</b> quando hanno ai capi la stessa differenza di potenziale. Il reciproco della resistenza equivalente è uguale alla somma dei reciproci delle singole resistenze.
-      </div>
-      <div class="formula-box">
-        <span class="formula-big">1/R<sub>tot</sub> = 1/R₁ + 1/R₂ + … + 1/Rₙ</span>
-      </div>
+    <p>Questa formula è comodissima: se sai la resistenza iniziale e il coefficiente α del materiale, puoi calcolare la resistenza a qualunque altra temperatura.</p>
+
+    <table>
+      <tr><th>Materiale</th><th>Coefficiente α (°C⁻¹)</th><th>Nota</th></tr>
+      <tr><td>Ferro</td><td>0,005</td><td>α positivo → più caldo, più resistente</td></tr>
+      <tr><td>Tungsteno</td><td>0,0045</td><td>—</td></tr>
+      <tr><td>Alluminio</td><td>0,004</td><td>—</td></tr>
+      <tr><td>Platino</td><td>0,004</td><td>—</td></tr>
+      <tr><td>Rame</td><td>0,0039</td><td>—</td></tr>
+      <tr><td>Argento</td><td>0,0038</td><td>—</td></tr>
+      <tr><td>Nichelcromo</td><td>0,00005</td><td>Quasi insensibile alla T</td></tr>
+      <tr><td>Costantana</td><td>0,000008</td><td>Quasi insensibile alla T</td></tr>
+      <tr><td>Carbonio</td><td>−0,0005</td><td>α negativo → più caldo, meno resistente</td></tr>
+      <tr><td>Germanio</td><td>−0,05</td><td>Semiconduttore</td></tr>
+      <tr><td>Silicio</td><td>−0,07</td><td>Semiconduttore</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Il Caso della Lampadina</h3>
+    <p>Se colleghiamo una lampadina a un generatore di tensione variabile e misuriamo corrente e tensione, scopriamo che il rapporto ΔV/i <em>non è costante</em>: la curva caratteristica non è una retta. Questo succede perché il filamento della lampadina si scalda moltissimo (anche 2000 °C!), quindi la sua resistenza cambia continuamente. La lampadina <strong>non è un conduttore ohmico</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h3>I Termometri Elettrici</h3>
+    <p>Se la resistenza cambia con la temperatura, possiamo usare questa proprietà al contrario: misurare la resistenza per risalire alla temperatura! Basta invertire la formula:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula inversa</div>
+      <div class="big-formula">ΔT = (1/α) · (R<sub>T</sub>/R₀ − 1)</div>
+      <div class="formula-legend">Misuri R<sub>T</sub>, conosci R₀ e α del materiale → trovi la temperatura ΔT</div>
     </div>
+    <p>Per misure molto precise si usano i <strong>termistori</strong>, che sono sensori fatti di semiconduttori, in grado di misurare temperature tra −200 °C e +850 °C.</p>
+  </div>
+
+  <div class="section">
+    <h3>La Termocoppia e l'Effetto Seebeck</h3>
+    <p>Per temperature ancora più alte esiste un altro strumento: la <strong>termocoppia</strong>. Funziona così: prendi due barrette di metalli diversi (es. rame e costantana) e saldali insieme a un'estremità. Se scaldi il punto saldato, tra le estremità libere appare spontaneamente una <strong>differenza di potenziale</strong>.</p>
+    <p>Questo fenomeno si chiama <strong>effetto Seebeck</strong>: una differenza di temperatura tra due conduttori di materiali diversi genera automaticamente una tensione. La tensione generata è nell'ordine dei millivolt (mV) ed è proporzionale alla differenza di temperatura — quindi misurando la tensione con un voltmetro si risale alla temperatura del punto caldo. La termocoppia è meno precisa del termistore, ma funziona fino a <strong>1800 °C</strong>.</p>
+  </div>
+</div><!-- /lezione 6 -->
+
+
+<!-- ═══════════════════════════════════════════
+     UNITÀ 15 – FENOMENI ELETTROSTATICI
+═══════════════════════════════════════════ -->
+<div class="unit-banner">
+  <div class="unit-num">15</div>
+  <div>
+    <div class="unit-label">Unità</div>
+    <div class="unit-name">Fenomeni Elettrostatici</div>
   </div>
 </div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag form">Formula</span>
-    <span class="def-name">Potenza Elettrica Dissipata</span>
+<!-- ─── LEZIONE 1 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">1</div>
+    <h2>Le Cariche Elettriche</h2>
   </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      La <b>potenza elettrica</b> dissipata da un resistore è l'energia elettrica trasformata in calore nell'unità di tempo. È uguale al prodotto tra la tensione ai suoi capi e la corrente che lo attraversa.
+  <div class="divider"></div><br>
+
+  <div class="section">
+    <h3>Come abbiamo scoperto l'elettricità</h3>
+    <p>Già nell'antichità si sapeva che strofinando un pezzo di <strong>ambra</strong> (una resina fossile) con un panno di lana, l'ambra acquistava la capacità di attrarre oggetti leggeri come penne e pezzetti di carta. Questo fenomeno si chiama <strong>elettrizzazione</strong>. La parola "elettricità" viene proprio dal greco <em>elektron</em>, che significa ambra.</p>
+    <p>Non è solo l'ambra: anche il vetro e le plastiche si elettrizzano strofinandole. Si può elettrizzare un oggetto anche semplicemente toccandolo con un altro già elettrizzato. E la regola base è questa: <strong>oggetti con la stessa carica si respingono, oggetti con carica opposta si attraggono</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h3>Cos'è la Carica Elettrica?</h3>
+    <p>Benjamin Franklin (1706–1790) capì che quando si strofina un oggetto, una certa "quantità di elettricità" passa da un oggetto all'altro. Questa quantità si chiama <strong>carica elettrica</strong>.</p>
+    <p>Per convenzione, si decide di chiamare <strong>positiva</strong> la carica che acquista il vetro strofinato con lana, e <strong>negativa</strong> quella acquistata dalla plastica. È solo una scelta: avrebbero potuto chiamarle in qualsiasi altro modo.</p>
+    <div class="card card-law">
+      <div class="card-label">📌 Regola fondamentale</div>
+      <p>• Cariche dello <strong>stesso segno</strong> (+/+ oppure −/−) → si <strong>respingono</strong><br>
+      • Cariche di <strong>segno opposto</strong> (+/−) → si <strong>attraggono</strong></p>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">P = V · I = R · I² = V² / R</span>
-      <span class="formula-label">P = potenza [Watt, W]</span>
+    <p>L'unità di misura della carica elettrica nel SI è il <strong>coulomb</strong> (simbolo C). È un'unità molto grande, quindi spesso si usa il <strong>microcoulomb</strong>: 1 μC = 0,000001 C = 10⁻⁶ C.</p>
+    <div class="card card-attention">
+      <div class="card-label">📌 Curiosità: quanto è grande 1 coulomb?</div>
+      <p>Due corpi carichi di 1 coulomb ciascuno, posti nel vuoto a 1 metro di distanza, si respingono (o si attraggono) con una forza enorme: <strong>9 × 10⁹ N</strong> — circa il peso di un milione di tonnellate!</p>
     </div>
+  </div>
+
+  <div class="section">
+    <h3>La Struttura dell'Atomo</h3>
+    <p>Per capire l'elettricità dobbiamo capire com'è fatto un atomo. Tre fisici hanno dato contributi fondamentali:</p>
+    <p><strong>Thomson (1897):</strong> scoprì che in tutti gli atomi ci sono particelle con carica negativa: gli <strong>elettroni</strong>. Secondo il suo modello (detto "a panettone"), ogni atomo è una sfera di carica positiva con dentro degli elettroni negativi. L'atomo nel complesso è neutro.</p>
+    <p><strong>Millikan (1909):</strong> scoprì che la carica dell'elettrone è la più piccola possibile in natura. Ogni altra carica è un multiplo intero di quella dell'elettrone. Per questo si dice che la carica è una grandezza <strong>quantizzata</strong>: non può assumere valori qualunque, solo multipli interi della carica elementare.</p>
+    <p><strong>Rutherford (1911):</strong> scoprì che la carica positiva non è distribuita ovunque nell'atomo, ma è concentrata in una zona centralissima e microscopica chiamata <strong>nucleo</strong>, dove si trova anche la massa. L'atomo funziona come un sistema solare in miniatura: al centro c'è il nucleo con i <strong>protoni</strong> (carichi positivamente) e i <strong>neutroni</strong> (senza carica), e intorno al nucleo orbitano gli <strong>elettroni</strong> (negativi).</p>
+    <div class="card card-attention">
+      <div class="card-label">📏 Dimensioni dell'atomo</div>
+      <p>Il raggio dell'atomo è circa 10⁻¹⁰ m. Il raggio del nucleo è circa 10⁻¹⁵ m — ovvero 100.000 volte più piccolo. La maggior parte dell'atomo è spazio vuoto!</p>
+    </div>
+
+    <table>
+      <tr><th>Particella</th><th>Carica</th><th>Massa</th></tr>
+      <tr><td>Elettrone</td><td>−1,6 × 10⁻¹⁹ C</td><td>9,11 × 10⁻³¹ kg (leggerissimo)</td></tr>
+      <tr><td>Protone</td><td>+1,6 × 10⁻¹⁹ C</td><td>1,673 × 10⁻²⁷ kg</td></tr>
+      <tr><td>Neutrone</td><td>0 (neutro)</td><td>1,675 × 10⁻²⁷ kg</td></tr>
+    </table>
+
+    <p>Un atomo è normalmente <strong>neutro</strong> perché ha lo stesso numero di protoni e di elettroni. Se perde elettroni diventa un <strong>ione positivo</strong>; se ne acquista in eccesso diventa un <strong>ione negativo</strong>.</p>
+  </div>
+</div><!-- /lezione 1 -->
+
+
+<!-- ─── LEZIONE 2 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">2</div>
+    <h2>La Legge di Coulomb</h2>
+  </div>
+  <div class="divider"></div><br>
+
+  <div class="section">
+    <h3>Come ha trovato la legge Coulomb?</h3>
+    <p>Charles de Coulomb (1736–1806) usò uno strumento ingegnoso chiamato <strong>bilancia di torsione</strong>: due sfere cariche — una fissa e una mobile — vengono avvicinate. La repulsione (o attrazione) fa ruotare un filo di seta. Più è grande la forza, più è grande la rotazione. Misurando l'angolo di rotazione si ricava la forza.</p>
+    <p>Coulomb variò le cariche e la distanza e misurò la forza in ogni caso. Trovò una legge precisa.</p>
+  </div>
+
+  <div class="section">
+    <h3>La Legge di Coulomb</h3>
+    <div class="card card-law">
+      <div class="card-label">⚡ Legge di Coulomb</div>
+      <p>Due cariche puntiformi Q₁ e Q₂ poste a distanza r si attraggono o si respingono con una forza (detta <strong>forza elettrostatica o di Coulomb</strong>) che è:<br>
+      • <strong>proporzionale al prodotto delle due cariche</strong> (più sono grandi, più forte è la forza)<br>
+      • <strong>inversamente proporzionale al quadrato della distanza</strong> (se raddoppi la distanza, la forza diventa 4 volte più piccola)</p>
+    </div>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">F = k · Q₁ · Q₂ / r²</div>
+      <div class="formula-legend">
+        F = forza in Newton (N)<br>
+        k = costante nel vuoto = 8,99 × 10⁹ N·m²/C² (un numero enorme!)<br>
+        Q₁, Q₂ = cariche in Coulomb (C)<br>
+        r = distanza in metri (m)
+      </div>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Due cariche di 1,0 μC ciascuna, a 10 cm di distanza nel vuoto:<br>
+      F = (8,99 × 10⁹) × (1,0 × 10⁻⁶) × (1,0 × 10⁻⁶) / (0,10)² = <strong>0,90 N</strong></p>
+    </div>
+    <div class="card card-simple">
+      <div class="card-label">🧠 Somiglia alla gravità!</div>
+      <p>La legge di Coulomb è identica nella forma alla legge di gravitazione universale (F = G·m₁·m₂/r²). Le differenze sono: la costante k è enormemente più grande di G; la forza di Coulomb può essere sia attrattiva che repulsiva, quella gravitazionale è sempre e solo attrattiva; la forza gravitazionale non dipende dal mezzo, quella di Coulomb sì.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>La Costante Dielettrica di un Mezzo</h3>
+    <p>Se le due cariche non sono nel vuoto ma immersi in un materiale (come l'acqua o il vetro), la forza di Coulomb è <em>più debole</em>. Quanto più debole? Dipende dal materiale, tramite la sua <strong>costante dielettrica relativa ε<sub>r</sub></strong>.</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">ε<sub>r</sub> = F<sub>vuoto</sub> / F<sub>mezzo</sub></div>
+      <div class="formula-legend">La forza nel mezzo vale quindi: F<sub>mezzo</sub> = (k / ε<sub>r</sub>) · Q₁ · Q₂ / r²<br>
+      ε<sub>r</sub> è sempre maggiore di 1 (la forza nel mezzo è sempre minore che nel vuoto). L'aria ha ε<sub>r</sub> ≈ 1, quindi nell'aria la forza è praticamente uguale a quella nel vuoto.</div>
+    </div>
+
+    <table>
+      <tr><th>Materiale</th><th>ε<sub>r</sub></th></tr>
+      <tr><td>Aria</td><td>1,00059</td></tr>
+      <tr><td>Petrolio</td><td>2,1</td></tr>
+      <tr><td>Plexiglas</td><td>3,4</td></tr>
+      <tr><td>Alcol etilico</td><td>28</td></tr>
+      <tr><td>Acqua</td><td>80</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>L'Induzione Elettrostatica</h3>
+    <p>Hai mai notato che una palloncino strofinato sui capelli attira foglietti di carta non caricati? Questo fenomeno si chiama <strong>induzione elettrostatica</strong> e funziona così:</p>
+    <p>La carta è neutra, ma gli elettroni al suo interno possono muoversi. Quando avvicini la bacchetta carica positivamente, gli elettroni della carta si spostano verso di essa (attratti). Il lato vicino alla bacchetta diventa negativo, il lato lontano positivo. Le forze attrattive (bacchetta positiva ↔ lato negativo della carta) sono maggiori di quelle repulsive (bacchetta positiva ↔ lato positivo della carta), perché il lato negativo è più vicino. Risultato: la carta viene attratta anche se non era carica!</p>
+  </div>
+</div><!-- /lezione 2 -->
+
+
+<!-- ─── LEZIONE 3 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">3</div>
+    <h2>Il Campo Elettrico</h2>
+  </div>
+  <div class="divider"></div><br>
+
+  <div class="section">
+    <h3>Cos'è un "campo"?</h3>
+    <p>Un <strong>campo</strong> è semplicemente il fatto che a ogni punto dello spazio associamo un valore di qualcosa. Esistono due tipi di campi. Il <strong>campo scalare</strong>: a ogni punto associ solo un numero (ad esempio la temperatura in ogni punto dell'Europa — in ogni città c'è una certa temperatura). Il <strong>campo vettoriale</strong>: a ogni punto associ un vettore, cioè una freccia con modulo, direzione e verso (ad esempio il vento — in ogni punto c'è una direzione e un'intensità del vento).</p>
+    <div class="card card-law">
+      <div class="card-label">📌 Definizione</div>
+      <p>Si ha un <strong>campo</strong> quando a ogni punto di una regione dello spazio possiamo associare una grandezza (scalare o vettoriale). Il campo esiste indipendentemente dal fatto che ci sia o meno un oggetto che lo "sente".</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Il Campo Gravitazionale (che già conosci)</h3>
+    <p>La forza di gravità sulla Terra punta sempre verso il basso, con un'accelerazione g ≈ 9,8 m/s² (al livello del mare). Questa accelerazione è uguale per tutti gli oggetti, indipendentemente dalla loro massa. Possiamo quindi dire che intorno alla Terra esiste un <strong>campo gravitazionale</strong> vettoriale: in ogni punto dello spazio c'è un vettore g che punta verso il centro della Terra. La Terra è la <strong>sorgente</strong> di questo campo. g = G · M / r², dove M è la massa della Terra e r la distanza dal centro.</p>
+  </div>
+
+  <div class="section">
+    <h3>Il Campo Elettrico: l'idea</h3>
+    <p>Allo stesso modo, una carica elettrica Q modifica lo spazio intorno a sé. Se metti una seconda carica q nelle vicinanze, questa "sentirà" una forza. Invece di dire "Q esercita una forza su q", diciamo che "Q crea un <strong>campo elettrico</strong> nello spazio intorno a sé, e q è immersa in questo campo". Il campo esiste anche senza q — q serve solo a rivelarlo.</p>
+    <div class="card card-law">
+      <div class="card-label">⚡ Definizione di campo elettrico</div>
+      <p>Il <strong>campo elettrico Ē</strong> in un punto è uguale alla forza elettrostatica che agisce su una carica di prova positiva q in quel punto, divisa per q stessa.</p>
+    </div>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">Ē = F / q</div>
+      <div class="formula-legend">
+        Ē = campo elettrico in Newton per Coulomb (N/C) — è un vettore<br>
+        F = forza in Newton (N)<br>
+        q = carica di prova in Coulomb (C)<br>
+        <br>
+        In un punto a distanza r da una carica sorgente Q nel vuoto: E = k · Q / r²
+      </div>
+    </div>
+    <div class="card card-simple">
+      <div class="card-label">🧠 Nota importante</div>
+      <p>Il campo E in un punto dipende solo dalla sorgente Q e dalla distanza r — <strong>non dipende dalla carica di prova q</strong> che usiamo per misurarlo. È una proprietà dello spazio, non della particella che ci mettiamo dentro.</p>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Su una carica di 1 μC agisce una forza F = 2 × 10⁻⁴ N. Qual è il campo elettrico in quel punto?<br>
+      E = F / q = (2 × 10⁻⁴ N) / (1 × 10⁻⁶ C) = <strong>2 × 10² N/C = 200 N/C</strong></p>
+    </div>
+
+    <p>La <strong>direzione</strong> del campo elettrico: è lungo la retta che unisce la sorgente Q al punto P. Il <strong>verso</strong>: se Q è positiva, il campo punta <em>allontanandosi</em> da Q (uscente); se Q è negativa, punta <em>verso</em> Q (entrante). Nel mezzo dielettrico: E<sub>mezzo</sub> = E<sub>vuoto</sub> / ε<sub>r</sub>.</p>
+  </div>
+</div><!-- /lezione 3 -->
+
+
+<!-- ─── LEZIONE 4 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">4</div>
+    <h2>Diversi Tipi di Campo Elettrico</h2>
+  </div>
+  <div class="divider"></div><br>
+
+  <div class="section">
+    <h3>Campo di una Carica Puntiforme</h3>
+    <p>Una sola carica Q crea un campo che ha la stessa intensità in tutti i punti che si trovano alla stessa distanza r. Questi punti formano una sfera attorno a Q. La forma del campo è quindi <strong>radiale</strong> (come i raggi di una ruota), con le frecce che escono se Q è positiva, che entrano se Q è negativa.</p>
+  </div>
+
+  <div class="section">
+    <h3>Il Principio di Sovrapposizione</h3>
+    <p>Se nello spazio ci sono più cariche (Q₁, Q₂, Q₃…), ognuna crea il proprio campo, come se le altre non esistessero. Il campo totale in un punto P si ottiene sommando vettorialmente tutti i singoli campi.</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Principio di sovrapposizione</div>
+      <div class="big-formula">Ē = Ē₁ + Ē₂ + Ē₃ + …</div>
+      <div class="formula-legend">La forza sulla carica q vale: F = q · Ē = F₁ + F₂ + F₃ + … anche la forza segue lo stesso principio.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Le Linee di Campo</h3>
+    <p>Per visualizzare un campo elettrico si usano le <strong>linee di campo</strong>: sono linee immaginarie tali che in ogni punto la freccia del campo è tangente alla linea. Regole fondamentali:</p>
+    <div class="card card-law">
+      <div class="card-label">📌 Regole delle linee di campo</div>
+      <p>• Partono dalle cariche <strong>positive</strong> e arrivano sulle cariche <strong>negative</strong>.<br>
+      • Non si incrociano mai (in un punto il campo ha una sola direzione).<br>
+      • Dove le linee sono più fitte, il campo è più <strong>intenso</strong>.<br>
+      • Carica puntiforme positiva → linee uscenti radiali.<br>
+      • Carica puntiforme negativa → linee entranti radiali.<br>
+      • Dipolo (+ e −) → linee che vanno da + a −.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Il Campo Uniforme</h3>
+    <p>In alcune situazioni il campo elettrico è uguale in ogni punto: stessa intensità, stessa direzione, stesso verso. Si chiama <strong>campo uniforme</strong>. Le sue linee di campo sono parallele e equidistanti. Come si crea? Con due lastre piatte parallele, una carica positivamente e una negativamente: tra le lastre il campo è uniforme e va dal + al −. Questo è esattamente analogo al campo gravitazionale vicino alla superficie terrestre (che è uniforme e punta verso il basso).</p>
+  </div>
+
+  <div class="section">
+    <h3>Campo Elettrico e Gravità: un'Analogia Perfetta</h3>
+    <p>Il campo gravitazionale g è la forza di gravità per unità di massa: g = F/m. Il campo elettrico E è la forza di Coulomb per unità di carica: E = F/q. Un corpo carico in un campo elettrico uniforme si comporta esattamente come una massa in un campo gravitazionale uniforme, con la differenza che invece della massa, è la carica a determinare la forza.</p>
+  </div>
+</div><!-- /lezione 4 -->
+
+
+<!-- ═══════════════════════════════════════════
+     UNITÀ 18 – IL CAMPO MAGNETICO
+═══════════════════════════════════════════ -->
+<div class="unit-banner">
+  <div class="unit-num">18</div>
+  <div>
+    <div class="unit-label">Unità</div>
+    <div class="unit-name">Il Campo Magnetico</div>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════
-     LEZIONE 1 — FENOMENI MAGNETICI
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header">
-  <div class="unit-num" style="color:var(--accent3);">1</div>
-  <div class="unit-title">
+<!-- ─── LEZIONE 1 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">1</div>
     <h2>Fenomeni Magnetici</h2>
-    <p>I magneti · Campo magnetico · Linee di campo · Corrente e campo</p>
   </div>
-</div>
+  <div class="divider"></div><br>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Magnete e Poli Magnetici</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote">
-      Un <b>magnete</b> è un corpo che possiede la proprietà di attrarre il ferro e altri materiali ferromagnetici. Ogni magnete presenta due regioni in cui gli effetti magnetici sono più intensi, dette <b>polo nord</b> e <b>polo sud</b>. Per convenzione, il polo nord è quello da cui escono le linee di campo, il polo sud è quello in cui entrano. Poli dello stesso nome si respingono; poli di nome opposto si attraggono.
-    </div>
-    <ul class="note">
-      <li><b>Proprietà fondamentale:</b> i poli nord e sud non possono essere separati. Spezzando un magnete si ottengono sempre due nuovi magneti, ciascuno con il proprio polo nord e il proprio polo sud. I monopoli magnetici non esistono in natura.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Campo Magnetico (vettore B̄)</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote">
-      Il <b>campo magnetico</b> è un campo vettoriale associato a ogni punto dello spazio circostante un magnete o un conduttore percorso da corrente. È rappresentato dal vettore <b>B̄</b> (detto anche vettore induzione magnetica o vettore campo magnetico). In un punto del campo, B̄ è definito quando se ne conoscono l'intensità, la direzione e il verso. La direzione di B̄ in un punto coincide con quella dell'asse di un ago magnetico posto in quel punto; il verso è quello che va dal polo sud al polo nord dell'ago.
+  <div class="section">
+    <h3>I Magneti: cosa sono e come funzionano</h3>
+    <p>Già nell'antichità si conosceva un minerale, la <strong>magnetite</strong>, capace di attrarre il ferro. Il nome deriva da Magnesia, città dell'Asia Minore ricca di questo minerale. In seguito si scoprì che anche ferro e acciaio, se messi a contatto con la magnetite, acquistano le stesse proprietà e diventano <strong>magneti</strong>.</p>
+    <p>Ogni magnete ha due zone dove il campo è più forte: il <strong>polo nord</strong> e il <strong>polo sud</strong>. La regola è identica a quella delle cariche: poli uguali si respingono, poli opposti si attraggono.</p>
+    <div class="card card-law">
+      <div class="card-label">🧲 Proprietà fondamentale dei magneti</div>
+      <p>I poli nord e sud di un magnete <strong>non si possono separare</strong>. Se spezzi un magnete a metà, non ottieni un polo nord e un polo sud separati, ma <strong>due nuovi magneti</strong>, ognuno con il suo polo nord e il suo polo sud.</p>
     </div>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Linee del Campo Magnetico</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote">
-      Le <b>linee del campo magnetico</b> (o linee di forza) sono curve immaginarie utilizzate per rappresentare il campo magnetico, con la seguente proprietà: la retta tangente a una linea di campo in un punto dà la direzione del vettore B̄ in quel punto. La densità delle linee è proporzionale all'intensità del campo: dove le linee sono più fitte, il campo è più intenso.
+  <div class="section">
+    <h3>Il Campo Magnetico</h3>
+    <p>I magneti creano intorno a sé un <strong>campo magnetico</strong>, indicato con il vettore <strong>B</strong>. È un campo vettoriale: in ogni punto ha un'intensità, una direzione e un verso. Per visualizzarlo si usa la <strong>limatura di ferro</strong>: i minuscoli frammenti metallici si orientano lungo le linee di campo, rendendolo visibile. Per trovare il verso del campo in un punto basta posizionare una bussola: l'ago si orienta nella direzione di B, puntando dal polo sud al polo nord dell'ago stesso.</p>
+    <div class="card card-law">
+      <div class="card-label">📌 Differenza cruciale con il campo elettrico</div>
+      <p>Le linee di campo elettrico partono dalle cariche positive e finiscono sulle cariche negative (sono "aperte"). Le linee di campo magnetico invece sono sempre <strong>linee chiuse</strong> — non hanno inizio né fine, perché non esistono "monopoli magnetici" (poli isolati).</p>
     </div>
-    <ul class="note">
-      <li>A differenza delle linee del campo elettrico, le linee del campo magnetico sono sempre <b>linee chiuse</b> (conseguenza del fatto che non esistono monopoli magnetici)</li>
-      <li>Escono dal polo nord del magnete ed entrano nel polo sud</li>
-    </ul>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Campo Magnetico Uniforme</span>
+  <div class="section">
+    <h3>Il Campo Magnetico Uniforme</h3>
+    <p>Il campo magnetico è <strong>uniforme</strong> se il vettore B ha la stessa intensità, direzione e verso in ogni punto della regione. Le linee di campo sono parallele ed equidistanti. Si può ottenere un campo uniforme in due modi: piegando un magnete a forma di U finché i due poli siano vicini e paralleli, oppure facendo passare corrente in un <strong>solenoide</strong> (lo vedremo dopo).</p>
   </div>
-  <div class="def-body">
-    <div class="def-quote">
-      Il <b>campo magnetico è uniforme</b> in una certa regione dello spazio quando il vettore B̄ ha la stessa intensità, la stessa direzione e lo stesso verso in ogni punto di quella regione. Le linee di campo di un campo uniforme sono parallele ed equidistanti, cioè distribuite con densità costante.
+
+  <div class="section">
+    <h3>La Scoperta di Oersted: la Corrente Crea un Campo Magnetico</h3>
+    <p>Per secoli si pensava che elettricità e magnetismo fossero fenomeni completamente separati. Nel 1820 il danese <strong>Hans Christian Oersted</strong> fece una scoperta rivoluzionaria quasi per caso: mise un ago magnetico (una bussola) sotto un filo elettrico. Quando fece passare corrente nel filo, l'ago ruotò e si dispose <strong>perpendicolare al filo</strong>. Conclusione storica:</p>
+    <div class="card card-law">
+      <div class="card-label">⚡ Scoperta di Oersted (1820)</div>
+      <p>Intorno a un filo percorso da corrente elettrica è presente un <strong>campo magnetico</strong>. Elettricità e magnetismo non sono fenomeni separati: sono collegati!</p>
     </div>
-    <ul class="note">
-      <li>Si ottiene piegando un magnete rettilineo finché i due poli sono vicini e paralleli, oppure all'interno di un solenoide percorso da corrente</li>
-    </ul>
+    <p>Le linee di campo attorno a un filo rettilineo percorso da corrente sono <strong>circonferenze concentriche</strong> centrate sul filo. Come trovare il verso? Con la <strong>regola della mano destra</strong>: metti il pollice nella direzione della corrente, le altre dita si chiudono nel verso del campo magnetico.</p>
   </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag prop">Proprietà</span>
-    <span class="def-name">Campo Magnetico Creato da una Corrente (Oersted, 1820)</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote">
-      Nel 1820 Hans Christian Oersted scoprì che <b>intorno a un filo percorso da corrente elettrica è presente un campo magnetico</b>. Questa scoperta dimostrò che elettricità e magnetismo non sono fenomeni indipendenti, ma sono strettamente collegati.
-    </div>
-    <ul class="note">
-      <li>Per un filo rettilineo, le linee di campo sono <b>circonferenze concentriche</b> al filo, che giacciono su piani perpendicolari al filo</li>
-      <li><b>Regola della mano destra (filo rettilineo):</b> disponendo il pollice nel verso della corrente, le dita della mano destra si chiudono indicando il verso del campo B̄</li>
-    </ul>
-  </div>
-</div>
+</div><!-- /lezione 1 -->
 
 
-<!-- ═══════════════════════════════════════════════════════════
-     LEZIONE 2 — CALCOLO DEL CAMPO
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header">
-  <div class="unit-num" style="color:var(--accent);">2</div>
-  <div class="unit-title">
+<!-- ─── LEZIONE 2 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">2</div>
     <h2>Calcolo del Campo Magnetico</h2>
-    <p>Intensità · Filo rettilineo · Spira · Solenoide · Campo terrestre</p>
   </div>
-</div>
+  <div class="divider"></div><br>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Intensità del Campo Magnetico B</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      L'<b>intensità del campo magnetico B</b> è definita come il rapporto tra la forza F esercitata dal campo su un conduttore rettilineo di lunghezza l percorso da corrente i (disposto perpendicolarmente alle linee di campo) e il prodotto della corrente per la lunghezza del conduttore stesso: B = F / (i · l). Rappresenta la costante di proporzionalità tra la forza agente sul conduttore e il prodotto i·l.
+  <div class="section">
+    <h3>Come si Misura l'Intensità di B?</h3>
+    <p>Nel 1821 Faraday scoprì che un campo magnetico esercita una <strong>forza</strong> su un filo percorso da corrente. Si misura questa forza su un filo rettilineo di lunghezza l con corrente i, disposto perpendicolarmente al campo B. Si osserva che F / (i · l) = costante. Questa costante <em>è</em> l'intensità del campo magnetico B.</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Definizione di B</div>
+      <div class="big-formula">B = F / (i · l)</div>
+      <div class="formula-legend">
+        B = intensità del campo magnetico in <strong>tesla</strong> (T) — unità dedicata a Nikola Tesla<br>
+        F = forza sul filo in Newton (N)<br>
+        i = corrente nel filo in Ampere (A)<br>
+        l = lunghezza del filo in metri (m)<br>
+        Nota: 1 T = 1 N/(A · m)
+      </div>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">B = F / (i · l)</span>
-      <span class="formula-label">F = forza [N] &nbsp;|&nbsp; i = corrente [A] &nbsp;|&nbsp; l = lunghezza conduttore [m]</span>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio</div>
+      <p>Un filo lungo 20 cm con corrente 4,0 A subisce una forza di 0,20 N. Il campo è:<br>
+      B = 0,20 N / (4,0 A × 0,20 m) = <strong>0,25 T</strong></p>
     </div>
-    <ul class="note">
-      <li>L'unità di misura di B nel SI è il <b>tesla [T]</b>, dove 1 T = 1 N/(A·m), in onore di Nikola Tesla</li>
-      <li>Si osserva sperimentalmente che F/(i·l) è costante al variare di F, i e l → questa costante è B</li>
-    </ul>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag legge">Legge</span>
-    <span class="def-name">Campo di un Filo Rettilineo — Legge di Biot-Savart</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      La <b>legge di Biot-Savart</b> afferma che in prossimità di un filo rettilineo percorso da corrente, il campo magnetico è direttamente proporzionale all'intensità di corrente i e inversamente proporzionale alla distanza d dal filo.
+  <div class="section">
+    <h3>Come si Calcola B per un Filo Rettilineo (Biot-Savart)</h3>
+    <p>In prossimità di un filo rettilineo lungo percorso da corrente, il campo magnetico è proporzionale alla corrente e inversamente proporzionale alla distanza dal filo:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Legge di Biot-Savart</div>
+      <div class="big-formula">B = k · i / d</div>
+      <div class="formula-legend">
+        k = 2 × 10⁻⁷ N/A² (costante nel vuoto)<br>
+        i = corrente in Ampere (A)<br>
+        d = distanza dal filo in metri (m)
+      </div>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">B = k · i / d</span>
-      <span class="formula-label">k = 2×10⁻⁷ N/A² (costante nel vuoto) &nbsp;|&nbsp; d = distanza dal filo [m]</span>
-    </div>
-    <ul class="note">
-      <li>Le linee di campo sono circonferenze concentriche al filo</li>
-      <li>Il verso si determina con la <b>regola della mano destra</b></li>
-    </ul>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Spira Circolare</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      Una <b>spira circolare</b> è un filo conduttore che forma una circonferenza chiusa. Quando è percorsa da corrente, intorno ad essa si crea un campo magnetico. Nel centro della spira l'intensità del campo B si calcola con la formula:
+  <div class="section">
+    <h3>Come si Calcola B per una Spira Circolare</h3>
+    <p>Una <strong>spira circolare</strong> è semplicemente un filo piegato a cerchio. Quando ci passa corrente, crea un campo. Al centro della spira l'intensità vale:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Campo al centro di una spira</div>
+      <div class="big-formula">B = k · π · i / r</div>
+      <div class="formula-legend">r = raggio della spira in metri (m) &nbsp;|&nbsp; Il vettore B è perpendicolare al piano della spira.<br>
+      Verso: se la corrente gira in senso orario → B entrante; se antiorario → B uscente.</div>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">B = k · π · i / r</span>
-      <span class="formula-label">r = raggio della spira [m]</span>
-    </div>
-    <ul class="note">
-      <li>B è direttamente proporzionale alla corrente i e inversamente proporzionale al raggio r</li>
-      <li>Il vettore B̄ è <b>perpendicolare al piano</b> su cui giace la spira</li>
-      <li>Il verso: <b>entrante</b> se la corrente circola in verso orario; <b>uscente</b> se la corrente circola in verso antiorario (vista dallo stesso lato)</li>
-    </ul>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Solenoide (o Bobina)</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote orange">
-      Un <b>solenoide</b> (o bobina) è formato da un certo numero di spire circolari affiancate. Quando è percorso da corrente elettrica, si forma un campo magnetico sia dentro sia fuori il solenoide. Se il solenoide è molto lungo rispetto al diametro delle spire, all'interno e lontano dagli estremi il campo magnetico è <b>uniforme</b>. L'intensità del vettore B̄ lungo l'asse si calcola con la formula:
+  <div class="section">
+    <h3>Come si Calcola B per un Solenoide</h3>
+    <p>Un <strong>solenoide</strong> (o bobina) è un filo avvolto a spirale per tante spire affiancate. Dentro un solenoide lungo e stretto, il campo è <strong>uniforme</strong>. All'esterno è quasi nullo. Più spire hai, più corrente scorre, più il campo è intenso. La lunghezza del solenoide invece lo riduce.</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Campo di un solenoide</div>
+      <div class="big-formula">B = 2π · k · i · N / l</div>
+      <div class="formula-legend">
+        N = numero di spire<br>
+        l = lunghezza del solenoide in metri (m)<br>
+        i = corrente in Ampere (A)<br>
+        k = 2 × 10⁻⁷ N/A²
+      </div>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">B = 2π · k · i · N / l</span>
-      <span class="formula-label">N = numero di spire &nbsp;|&nbsp; l = lunghezza del solenoide [m]</span>
-    </div>
-    <ul class="note">
-      <li>All'esterno del solenoide le linee di campo sono molto distanziate → campo trascurabile</li>
-      <li>B dipende da: corrente i, numero spire N, lunghezza l; <b>non dipende dal raggio delle spire</b></li>
-      <li>Anche per il solenoide si possono definire un polo nord e un polo sud</li>
-    </ul>
-    <div class="example">
-      <div class="ex-title">Esempio numerico</div>
-      Corrente = 5,0 A | l = 20 cm = 0,20 m | N = 40 spire<br>
-      <span class="mono" style="color:var(--accent);">B = 6,28 × (2×10⁻⁷) × 5,0 × 40 / 0,20 ≈ 1,3×10⁻³ T</span>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Solenoide: 40 spire, lungo 20 cm (0,20 m), corrente 5,0 A:<br>
+      B = 6,28 × (2 × 10⁻⁷) × 5,0 × 40 / 0,20 ≈ <strong>1,3 × 10⁻³ T</strong></p>
     </div>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag prop">Proprietà</span>
-    <span class="def-name">Campo Magnetico Terrestre</span>
+  <div class="section">
+    <h3>Il Campo Magnetico Terrestre</h3>
+    <p>La Terra si comporta come un enorme magnete. Il suo <strong>polo magnetico nord</strong> si trova vicino al polo geografico <em>sud</em>, e viceversa (è per questo che l'ago nord di una bussola punta verso il nord geografico — è attratto dal polo magnetico sud terrestre). L'asse del campo magnetico terrestre è inclinato di circa 11° rispetto all'asse di rotazione della Terra. L'intensità del campo terrestre è molto piccola: circa 10⁻⁵ T, molto meno di una calamita da frigo (≈ 10⁻² T).</p>
   </div>
-  <div class="def-body">
-    <div class="def-quote">
-      La <b>Terra si comporta come un magnete</b>: i poli magnetici si trovano in prossimità di quelli geografici. Il polo nord del magnete terrestre si trova vicino al polo sud geografico e viceversa. La posizione dei poli magnetici terrestri varia nel tempo; attualmente l'asse del campo magnetico terrestre è inclinato di circa 11° rispetto all'asse di rotazione della Terra. L'intensità è dell'ordine di 10⁻⁵ T, molto bassa ma rilevabile dagli strumenti.
-    </div>
-  </div>
-</div>
+</div><!-- /lezione 2 -->
 
 
-<!-- ═══════════════════════════════════════════════════════════
-     LEZIONE 3 — CAMPO NELLA MATERIA
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header">
-  <div class="unit-num" style="color:var(--accent5);">3</div>
-  <div class="unit-title">
+<!-- ─── LEZIONE 3 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">3</div>
     <h2>Il Campo Magnetico nella Materia</h2>
-    <p>Permeabilità · Paramagnetici · Diamagnetici · Ferromagnetici · Elettromagnete</p>
   </div>
-</div>
+  <div class="divider"></div><br>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Permeabilità Magnetica Relativa (μᵣ)</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      La <b>permeabilità magnetica relativa μᵣ</b> di un materiale è il rapporto tra l'intensità del campo magnetico B misurata all'interno del materiale e l'intensità del campo B₀ che si avrebbe nello stesso punto se al posto del materiale ci fosse il vuoto. Indica quante volte il campo nel mezzo è maggiore o minore del campo nel vuoto.
-    </div>
-    <div class="formula-box">
-      <span class="formula-big">μᵣ = B / B₀</span>
-      <span class="formula-label">adimensionale &nbsp;|&nbsp; Per l'aria: μᵣ ≈ 1 (ottima approssimazione del vuoto)</span>
+  <div class="section">
+    <h3>I Materiali modificano il Campo Magnetico</h3>
+    <p>Se inserisci un materiale all'interno di un solenoide, il campo magnetico B cambia rispetto al valore B₀ nel vuoto:</p>
+    <div class="card card-attention">
+      <div class="card-label">🧲 Cosa succede con diversi materiali?</div>
+      <p>• <strong>Ferro</strong> dentro il solenoide → B diventa enormemente più grande (B >> B₀)<br>
+      • <strong>Alluminio</strong> dentro il solenoide → B è leggermente più grande di B₀ (quasi uguale)<br>
+      • <strong>Rame</strong> dentro il solenoide → B è leggermente più piccolo di B₀ (quasi uguale)</p>
     </div>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Sostanze Paramagnetiche</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      Le <b>sostanze paramagnetiche</b> sono quelle che si comportano come l'alluminio: al loro interno il campo magnetico è leggermente superiore a quanto sarebbe nel vuoto. Questo significa che la permeabilità magnetica relativa è di poco superiore a 1: μᵣ > 1. Essa si mantiene costante per temperature non troppo elevate.
-    </div>
-    <ul class="note">
-      <li>Esempi: alluminio (μᵣ = 1,000022), platino (μᵣ = 1,0003), aria (μᵣ ≈ 1,0000004)</li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Sostanze Diamagnetiche</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      Le <b>sostanze diamagnetiche</b> sono quelle che si comportano come il rame: poiché B è leggermente minore di B₀, la permeabilità magnetica è di poco inferiore a 1: μᵣ &lt; 1. La permeabilità magnetica <b>non dipende dalla temperatura</b>.
-    </div>
-    <ul class="note">
-      <li>Esempi: rame (μᵣ = 0,999990), acqua (μᵣ = 0,999910), argento, vetro</li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Sostanze Ferromagnetiche</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      Le <b>sostanze ferromagnetiche</b>, come il ferro, il nichel e poche altre, hanno permeabilità magnetica molto elevata: μᵣ >> 1. Essa non ha valore costante: varia a seconda dell'intensità del campo magnetico e del trattamento subito in precedenza dal materiale. Queste sostanze possono <b>magnetizzarsi in modo permanente</b>, cioè possono conservare le loro proprietà magnetiche anche dopo che il campo magnetico esterno è stato rimosso.
-    </div>
-    <ul class="note">
-      <li>Ferro: μᵣ ≈ 5000 &nbsp;|&nbsp; Nichel: μᵣ = 100–600 &nbsp;|&nbsp; Permalloy: μᵣ ≈ 100.000</li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Temperatura di Curie</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      La <b>temperatura di Curie</b> è la temperatura al di sopra della quale le sostanze ferromagnetiche perdono le loro proprietà magnetiche peculiari e si comportano come sostanze paramagnetiche. Per il ferro la temperatura di Curie è <b>770 °C</b>.
+  <div class="section">
+    <h3>La Permeabilità Magnetica Relativa μ<sub>r</sub></h3>
+    <p>Per quantificare questo effetto si usa la <strong>permeabilità magnetica relativa</strong> μ<sub>r</sub>:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula</div>
+      <div class="big-formula">μ<sub>r</sub> = B / B₀</div>
+      <div class="formula-legend">Ci dice quante volte il materiale amplifica (o riduce) il campo magnetico rispetto al vuoto.<br>
+      Per l'aria: μ<sub>r</sub> ≈ 1, quindi i calcoli per il vuoto valgono anche per l'aria.</div>
     </div>
   </div>
-</div>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Elettromagnete</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote purple">
-      Un <b>elettromagnete</b> (o elettrocalamita) è formato da un nucleo di materiale ferromagnetico (in genere ferro dolce, ovvero acciaio a basso contenuto di carbonio), intorno al quale è avvolta una bobina di filo conduttore. Quando nella bobina passa una corrente si genera un campo magnetico, che viene intensificato dalla presenza del nucleo ferromagnetico. Quando la corrente si interrompe, il cilindro si smagnetizza e il campo torna praticamente nullo.
+  <div class="section">
+    <h3>Le Tre Categorie di Materiali Magnetici</h3>
+    <div class="card card-simple">
+      <div class="card-label">🔵 Sostanze Paramagnetiche (es. alluminio, platino)</div>
+      <p>μ<sub>r</sub> è di poco superiore a 1 (es. alluminio: 1,0000022). Il materiale amplifica leggermente il campo. La permeabilità è costante a temperature non troppo alte.</p>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">B = μᵣ · B₀ = μᵣ · 2π · k · i · N / l</span>
-      <span class="formula-label">Il campo con nucleo ferromagnetico è μᵣ volte più intenso rispetto al vuoto</span>
+    <div class="card card-attention">
+      <div class="card-label">🟡 Sostanze Diamagnetiche (es. rame, acqua, argento)</div>
+      <p>μ<sub>r</sub> è di poco inferiore a 1 (es. rame: 0,999990). Il materiale riduce leggermente il campo. La permeabilità non dipende dalla temperatura.</p>
+    </div>
+    <div class="card card-law">
+      <div class="card-label">🔴 Sostanze Ferromagnetiche (es. ferro, nichel)</div>
+      <p>μ<sub>r</sub> >> 1: il ferro ha μ<sub>r</sub> = 5000, le leghe speciali (permalloy) arrivano a 100.000! Il campo viene amplificato enormemente. Possono <strong>magnetizzarsi permanentemente</strong>: conservano le proprietà magnetiche anche dopo che il campo esterno è rimosso. Al di sopra della <strong>temperatura di Curie</strong> (per il ferro: 770 °C), perdono le proprietà ferromagnetiche e diventano paramagnetiche.</p>
+    </div>
+
+    <table>
+      <tr><th>Sostanza</th><th>μ<sub>r</sub></th></tr>
+      <tr><td>Ferro</td><td>5000</td></tr>
+      <tr><td>Nichel</td><td>100–600</td></tr>
+      <tr><td>Permalloy</td><td>≈ 100 000</td></tr>
+      <tr><td>Aria</td><td>1,0000004</td></tr>
+      <tr><td>Alluminio</td><td>1,0000022</td></tr>
+      <tr><td>Rame</td><td>0,999990</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>L'Elettromagnete</h3>
+    <p>Un <strong>elettromagnete</strong> (o elettrocalamita) è formato da un nucleo di ferro dolce avvolto da una bobina. Quando scorre corrente nella bobina si genera un campo magnetico, che il nucleo di ferro amplifica migliaia di volte grazie alla sua altissima μ<sub>r</sub>. Quando la corrente si interrompe, il ferro si smagnetizza e il campo scompare praticamente all'istante — a differenza di un magnete permanente. Questo li rende utilissimi in gru industriali, altoparlanti, motori, e decine di altre applicazioni.</p>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Solenoide da 500 spire, lungo 0,25 m, corrente 2 A, nucleo di ferro (μ<sub>r</sub> = 5000):<br>
+      B = μ<sub>r</sub> × 2πk × i × N / l = 5000 × 2π × 2×10⁻⁷ × 2 × 500 / 0,25 = <strong>25 T</strong><br>
+      Per ottenere lo stesso campo in aria servirebbe una corrente di 10.000 A!</p>
     </div>
   </div>
-</div>
+</div><!-- /lezione 3 -->
 
 
-<!-- ═══════════════════════════════════════════════════════════
-     LEZIONE 4 — FORZE SUI CONDUTTORI
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header">
-  <div class="unit-num" style="color:var(--accent4);">4</div>
-  <div class="unit-title">
+<!-- ─── LEZIONE 4 ─── -->
+<div class="lesson">
+  <div class="lesson-title">
+    <div class="lesson-circle">4</div>
     <h2>Forze su Conduttori Percorsi da Corrente</h2>
-    <p>Forza su conduttore · Spira · Legge di Ampère · Definizione dell'Ampere</p>
   </div>
-</div>
+  <div class="divider"></div><br>
 
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag legge">Legge</span>
-    <span class="def-name">Forza su un Conduttore Percorso da Corrente</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote red">
-      Un conduttore rettilineo di lunghezza l percorso da una corrente i, immerso in un campo magnetico uniforme B̄, è soggetto a una forza F. L'intensità di questa forza dipende dalla componente del campo perpendicolare al conduttore (B⊥ = B · sen α, dove α è l'angolo tra il conduttore e il campo) e vale:
+  <div class="section">
+    <h3>Un Filo con Corrente in un Campo Magnetico subisce una Forza</h3>
+    <p>Abbiamo visto che una corrente crea un campo magnetico (Oersted). La scoperta di Faraday è complementare: un campo magnetico esercita una <strong>forza</strong> su un filo percorso da corrente. Questa forza dipende dall'angolo che il filo forma con il campo:</p>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula generale</div>
+      <div class="big-formula">F = B · sin α · i · l</div>
+      <div class="formula-legend">
+        F = forza in Newton (N)<br>
+        B = intensità del campo magnetico in Tesla (T)<br>
+        α = angolo tra il filo e il campo<br>
+        i = corrente in Ampere (A)<br>
+        l = lunghezza del tratto di filo in metri (m)
+      </div>
     </div>
-    <div class="formula-box">
-      <span class="formula-big">F = B · i · l · sen(α)</span>
-      <span class="formula-label">α = angolo tra la direzione della corrente e il campo B̄ &nbsp;|&nbsp; F [N]</span>
+    <div class="card card-attention">
+      <div class="card-label">⚠️ Casi particolari</div>
+      <p>• Se il filo è <strong>perpendicolare</strong> al campo (α = 90°): sin 90° = 1 → forza <strong>massima</strong>: F = B · i · l<br>
+      • Se il filo è <strong>parallelo</strong> al campo (α = 0°): sin 0° = 0 → forza <strong>nulla</strong>: F = 0</p>
     </div>
-    <ul class="note">
-      <li>F è <b>massima</b> quando conduttore e campo sono perpendicolari (α = 90°, sen 90° = 1)</li>
-      <li>F è <b>nulla</b> quando conduttore e campo sono paralleli (α = 0°, sen 0° = 0)</li>
-      <li>La direzione della forza è sempre <b>perpendicolare</b> al piano individuato dalla direzione del campo e dalla direzione della corrente</li>
-      <li><b>Regola della mano destra (forza):</b> il pollice indica il verso della corrente, le dita indicate il verso del campo B̄, la forza esce perpendicolare al palmo della mano</li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag prop">Proprietà</span>
-    <span class="def-name">Spira Rettangolare in un Campo Magnetico</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote red">
-      Una spira rettangolare percorsa da corrente immersa in un campo magnetico uniforme B̄ è soggetta a una coppia di forze che la fa ruotare. Quando il piano della spira è parallelo alle linee di campo, sui lati perpendicolari al campo si esercita una coppia di forze che tende a ruotare la spira. La spira ruota finché raggiunge la posizione in cui è perpendicolare alla direzione del campo: in tale posizione il momento della coppia è nullo. Per effetto dell'inerzia la spira supera questa posizione di equilibrio, si genera una coppia opposta e la spira oscilla, fino a fermarsi per attrito nella posizione di equilibrio.
-    </div>
-    <ul class="note">
-      <li>Questo è il principio fisico alla base del <b>motore elettrico</b></li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag legge">Legge</span>
-    <span class="def-name">Legge di Ampère — Interazione fra Correnti</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote red">
-      La <b>legge di Ampère</b> afferma che due fili rettilinei paralleli percorsi da correnti equiverse si attraggono; se invece le correnti circolano in verso opposto, i due fili si respingono. Se i fili sono posti alla distanza d e in essi circolano le correnti i₁ e i₂, la forza che ciascun filo esercita su un tratto lungo l dell'altro è direttamente proporzionale alle correnti e alla lunghezza l, e inversamente proporzionale alla distanza d fra i fili:
-    </div>
-    <div class="formula-box">
-      <span class="formula-big">F/l = k · i₁ · i₂ / d</span>
-      <span class="formula-label">k = 2×10⁻⁷ N/A² &nbsp;|&nbsp; d = distanza tra i fili [m] &nbsp;|&nbsp; F/l = forza per unità di lunghezza [N/m]</span>
-    </div>
-    <ul class="note">
-      <li>Correnti <b>equiverse</b> (stesso verso) → forza di <b>attrazione</b></li>
-      <li>Correnti <b>opposte</b> (verso contrario) → forza di <b>repulsione</b></li>
-      <li>L'interazione tra fili rettilinei percorsi da corrente viene utilizzata per definire l'unità di misura della corrente elettrica nel SI: l'<b>ampere</b></li>
-    </ul>
-  </div>
-</div>
-
-<div class="def-block">
-  <div class="def-header">
-    <span class="def-tag def">Definizione</span>
-    <span class="def-name">Definizione dell'Ampere (SI)</span>
-  </div>
-  <div class="def-body">
-    <div class="def-quote red">
-      L'<b>ampere</b> è l'unità di misura della corrente elettrica nel Sistema Internazionale. È definito come l'intensità di corrente che, scorrendo in due fili rettilinei molto lunghi e paralleli posti alla distanza di 1 metro l'uno dall'altro nel vuoto, produce tra di essi una forza di attrazione o di repulsione uguale a 2×10⁻⁷ newton per ogni metro di lunghezza dei fili.
+    <div class="card card-simple">
+      <div class="card-label">🧠 Come trovare la direzione della forza?</div>
+      <p>Con la <strong>regola della mano destra</strong>: metti il pollice nella direzione della corrente i, le dita nella direzione del campo B → la forza esce perpendicolare al palmo della mano. Se inventi il verso della corrente, la forza si inverte.</p>
     </div>
   </div>
-</div>
 
+  <div class="section">
+    <h3>La Spira Rettangolare in un Campo Magnetico</h3>
+    <p>Immagina una spira rettangolare con corrente, immersa in un campo magnetico uniforme B, con il suo piano inizialmente parallelo alle linee del campo. I due lati perpendicolari alle linee del campo subiscono entrambi una forza, ma in direzioni opposte. Queste due forze formano una <strong>coppia</strong> che fa ruotare la spira. La spira ruota finché si dispone perpendicolare al campo (momento di coppia = 0). Per inerzia supera questa posizione, poi la coppia si inverte e la spira torna indietro, oscillando fino a fermarsi per attrito. Questo è il principio base del <strong>motore elettrico</strong>!</p>
+  </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     SCHEDA RAPIDA — FORMULE
-════════════════════════════════════════════════════════════ -->
-<div class="unit-header" style="margin-top:60px;">
-  <div class="unit-num" style="color:#fff;font-size:2rem;">∑</div>
-  <div class="unit-title">
-    <h2>Scheda Rapida — Tutte le Formule</h2>
-    <p>Un colpo d'occhio prima dell'esame</p>
+  <div class="section">
+    <h3>L'Interazione fra Correnti Parallele: la Legge di Ampère</h3>
+    <p>Ampère (1775–1836) scoprì che due fili paralleli percorsi da corrente <em>si influenzano a vicenda</em>: il filo 1 crea un campo magnetico in cui è immerso il filo 2, che quindi subisce una forza. E viceversa. Il risultato:</p>
+    <div class="card card-law">
+      <div class="card-label">⚡ Legge di Ampère</div>
+      <p>• Correnti nello <strong>stesso verso</strong> → i fili si <strong>attraggono</strong><br>
+      • Correnti in <strong>verso opposto</strong> → i fili si <strong>respingono</strong></p>
+    </div>
+    <div class="card card-formula">
+      <div class="card-label">📐 Formula della forza tra due fili</div>
+      <div class="big-formula">F = k · i₁ · i₂ · l / d</div>
+      <div class="formula-legend">
+        k = 2 × 10⁻⁷ N/A²<br>
+        i₁, i₂ = correnti nei due fili in Ampere (A)<br>
+        l = lunghezza del tratto considerato in metri (m)<br>
+        d = distanza tra i fili in metri (m)
+      </div>
+    </div>
+    <div class="card card-example">
+      <div class="card-label">✏️ Esempio numerico</div>
+      <p>Due fili con correnti 3,0 A e 5,0 A, a 10 cm di distanza.<br>
+      Forza per metro di filo:<br>
+      F/l = (2 × 10⁻⁷) × 3,0 × 5,0 / 0,10 = <strong>3,0 × 10⁻⁵ N/m</strong></p>
+    </div>
+
+    <div class="card card-law">
+      <div class="card-label">📌 Definizione dell'Ampere (importantissima!)</div>
+      <p>Questa legge serve a definire l'unità di misura della corrente. <strong>1 ampere</strong> è la corrente che, scorrendo in due fili paralleli molto lunghi posti a 1 metro di distanza nel vuoto, produce una forza di <strong>2 × 10⁻⁷ N</strong> per ogni metro di filo.</p>
+    </div>
+  </div>
+</div><!-- /lezione 4 -->
+
+</div><!-- /page -->
+
+<!-- INDEX -->
+<div class="index-section">
+  <h2>📚 Indice completo degli argomenti</h2>
+  <div class="index-grid">
+    <div class="index-item"><b>U16·L3</b> Prima legge di Ohm</div>
+    <div class="index-item"><b>U16·L3</b> Seconda legge di Ohm</div>
+    <div class="index-item"><b>U16·L3</b> Resistenza elettrica</div>
+    <div class="index-item"><b>U16·L3</b> Analogia idraulica</div>
+    <div class="index-item"><b>U16·L3</b> Resistività ρ</div>
+    <div class="index-item"><b>U16·L3</b> Conduttore ohmico</div>
+    <div class="index-item"><b>U16·L6</b> Resistività e temperatura</div>
+    <div class="index-item"><b>U16·L6</b> Coefficiente α</div>
+    <div class="index-item"><b>U16·L6</b> Formula R_T</div>
+    <div class="index-item"><b>U16·L6</b> Termistori</div>
+    <div class="index-item"><b>U16·L6</b> Termocoppia</div>
+    <div class="index-item"><b>U16·L6</b> Effetto Seebeck</div>
+    <div class="index-item"><b>U15·L1</b> Carica elettrica</div>
+    <div class="index-item"><b>U15·L1</b> Coulomb (unità)</div>
+    <div class="index-item"><b>U15·L1</b> Modello di Thomson</div>
+    <div class="index-item"><b>U15·L1</b> Scoperta di Millikan</div>
+    <div class="index-item"><b>U15·L1</b> Modello di Rutherford</div>
+    <div class="index-item"><b>U15·L1</b> Carica quantizzata</div>
+    <div class="index-item"><b>U15·L2</b> Legge di Coulomb</div>
+    <div class="index-item"><b>U15·L2</b> Costante k</div>
+    <div class="index-item"><b>U15·L2</b> Costante dielettrica ε<sub>r</sub></div>
+    <div class="index-item"><b>U15·L2</b> Induzione elettrostatica</div>
+    <div class="index-item"><b>U15·L3</b> Campo scalare e vettoriale</div>
+    <div class="index-item"><b>U15·L3</b> Campo gravitazionale</div>
+    <div class="index-item"><b>U15·L3</b> Campo elettrico E</div>
+    <div class="index-item"><b>U15·L3</b> Carica di prova</div>
+    <div class="index-item"><b>U15·L4</b> Principio sovrapposizione</div>
+    <div class="index-item"><b>U15·L4</b> Linee di campo</div>
+    <div class="index-item"><b>U15·L4</b> Campo uniforme</div>
+    <div class="index-item"><b>U15·L4</b> Dipolo elettrico</div>
+    <div class="index-item"><b>U18·L1</b> Magneti e poli</div>
+    <div class="index-item"><b>U18·L1</b> Campo magnetico B</div>
+    <div class="index-item"><b>U18·L1</b> Linee di campo chiuse</div>
+    <div class="index-item"><b>U18·L1</b> Scoperta di Oersted</div>
+    <div class="index-item"><b>U18·L1</b> Regola mano destra</div>
+    <div class="index-item"><b>U18·L2</b> Tesla (unità)</div>
+    <div class="index-item"><b>U18·L2</b> Biot-Savart (filo)</div>
+    <div class="index-item"><b>U18·L2</b> Spira circolare</div>
+    <div class="index-item"><b>U18·L2</b> Solenoide / bobina</div>
+    <div class="index-item"><b>U18·L2</b> Campo magnetico terrestre</div>
+    <div class="index-item"><b>U18·L3</b> Permeabilità μ<sub>r</sub></div>
+    <div class="index-item"><b>U18·L3</b> Paramagnetici</div>
+    <div class="index-item"><b>U18·L3</b> Diamagnetici</div>
+    <div class="index-item"><b>U18·L3</b> Ferromagnetici</div>
+    <div class="index-item"><b>U18·L3</b> Temperatura di Curie</div>
+    <div class="index-item"><b>U18·L3</b> Elettromagnete</div>
+    <div class="index-item"><b>U18·L4</b> Forza su conduttore</div>
+    <div class="index-item"><b>U18·L4</b> Spira in campo magnetico</div>
+    <div class="index-item"><b>U18·L4</b> Legge di Ampère</div>
+    <div class="index-item"><b>U18·L4</b> Forza tra fili paralleli</div>
+    <div class="index-item"><b>U18·L4</b> Definizione dell'Ampere</div>
   </div>
 </div>
 
-<div class="quick-card">
-  <div class="quick-title">Formule essenziali</div>
-  <table class="nice">
-    <tr><th>Grandezza</th><th>Formula</th><th>Unità</th><th>Condizione</th></tr>
-    <tr><td><b>1ª legge di Ohm</b></td><td class="mono">V = R · I</td><td>V, Ω, A</td><td>T costante</td></tr>
-    <tr><td><b>2ª legge di Ohm</b></td><td class="mono">R = ρ · L / A</td><td>Ω, Ω·m, m, m²</td><td>—</td></tr>
-    <tr><td><b>Resistenze in serie</b></td><td class="mono">R_tot = R₁+R₂+…</td><td>Ω</td><td>stessa corrente</td></tr>
-    <tr><td><b>Resistenze in parallelo</b></td><td class="mono">1/R_tot = 1/R₁+1/R₂+…</td><td>Ω</td><td>stessa tensione</td></tr>
-    <tr><td><b>Potenza dissipata</b></td><td class="mono">P = V·I = R·I² = V²/R</td><td>W</td><td>—</td></tr>
-    <tr><td><b>Intensità campo B</b></td><td class="mono">B = F / (i · l)</td><td>T = N/(A·m)</td><td>conduttore ⊥ a B</td></tr>
-    <tr><td><b>Filo rettilineo (Biot-Savart)</b></td><td class="mono">B = k · i / d</td><td>T</td><td>k = 2×10⁻⁷ N/A²</td></tr>
-    <tr><td><b>Spira circolare (centro)</b></td><td class="mono">B = k · π · i / r</td><td>T</td><td>nel centro della spira</td></tr>
-    <tr><td><b>Solenoide (asse, uniforme)</b></td><td class="mono">B = 2π · k · i · N / l</td><td>T</td><td>lungo >> diametro</td></tr>
-    <tr><td><b>Solenoide con materiale</b></td><td class="mono">B = μᵣ · B₀</td><td>T</td><td>—</td></tr>
-    <tr><td><b>Permeabilità relativa</b></td><td class="mono">μᵣ = B / B₀</td><td>adim.</td><td>aria ≈ 1, ferro ≈ 5000</td></tr>
-    <tr><td><b>Forza su conduttore</b></td><td class="mono">F = B · i · l · sen(α)</td><td>N</td><td>α = angolo B̄ e corrente</td></tr>
-    <tr><td><b>Legge di Ampère</b></td><td class="mono">F/l = k · i₁ · i₂ / d</td><td>N/m</td><td>definisce l'Ampere</td></tr>
-  </table>
-</div>
-
-<div class="quick-card">
-  <div class="quick-title">Costanti e valori da ricordare</div>
-  <table class="nice">
-    <tr><th>Costante / Valore</th><th>Valore</th></tr>
-    <tr><td>k (Biot-Savart, nel vuoto)</td><td class="mono">2 × 10⁻⁷ N/A²</td></tr>
-    <tr><td>Campo magnetico terrestre</td><td class="mono">≈ 10⁻⁵ T</td></tr>
-    <tr><td>μᵣ ferro</td><td class="mono">≈ 5000</td></tr>
-    <tr><td>μᵣ nichel</td><td class="mono">100 – 600</td></tr>
-    <tr><td>μᵣ permalloy</td><td class="mono">≈ 100.000</td></tr>
-    <tr><td>Temperatura di Curie (ferro)</td><td class="mono">770 °C</td></tr>
-    <tr><td>Forza tra fili a 1 m (definizione Ampere)</td><td class="mono">2 × 10⁻⁷ N/m</td></tr>
-  </table>
-</div>
-
-<div class="quick-card">
-  <div class="quick-title">Test al Volo — Vero o Falso</div>
-  <table class="nice">
-    <tr><th>Affermazione</th><th>Risposta</th></tr>
-    <tr><td>Non può esistere un magnete con un solo polo</td><td><span class="pill g">VERO</span></td></tr>
-    <tr><td>Il campo magnetico è un campo scalare</td><td><span class="pill r">FALSO</span> — è vettoriale</td></tr>
-    <tr><td>Le linee di campo magnetico sono sempre chiuse</td><td><span class="pill g">VERO</span></td></tr>
-    <tr><td>Un filo elettrico genera un campo magnetico uniforme</td><td><span class="pill r">FALSO</span></td></tr>
-    <tr><td>Il polo nord magnetico terrestre coincide con il polo nord geografico</td><td><span class="pill r">FALSO</span> — è il polo sud magnetico</td></tr>
-    <tr><td>L'intensità di B cambia a seconda del materiale presente</td><td><span class="pill g">VERO</span></td></tr>
-    <tr><td>Nei ferromagnetici μᵣ è costante</td><td><span class="pill r">FALSO</span> — varia con B e il trattamento</td></tr>
-    <tr><td>La forza su un conduttore è massima quando campo e corrente sono paralleli</td><td><span class="pill r">FALSO</span> — massima se perpendicolari</td></tr>
-    <tr><td>Due fili percorsi da correnti concordi si attraggono</td><td><span class="pill g">VERO</span></td></tr>
-    <tr><td>Una spira in un campo magnetico ruota all'infinito</td><td><span class="pill r">FALSO</span> — oscilla poi si ferma per attrito</td></tr>
-  </table>
-</div>
-
-</div>
-<div class="footer">Unità 18 — Il Campo Magnetico · Zanichelli · con definizioni complete per l'esame</div>
 </body>
 </html>
